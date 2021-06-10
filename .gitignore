@@ -1,0 +1,10 @@
+__pycache__
+
+.vscode
+.vs
+
+.DS_Store
+*.sqlite3
+*.pyc
+*.db
+*.pid
