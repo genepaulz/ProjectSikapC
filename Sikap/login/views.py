@@ -1,3 +1,45 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.http import JsonResponse
+from django.views.generic import View,TemplateView
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import *
+from django.template import *
+from .import views
+from datetime import *
+
+
 
 # Create your views here.
+
+class LoginView(View):
+    def get(self,request):
+        return render(request,'login.html')
+
+    def post(self,request):
+        email = request.POST.get("email")
+        password = request.POST.get("pass")
+
+        q = User.objects.get(email=email)
+        if(q.verify_password(password)):
+            if(q.user_type):
+                #IMPLEMENT CONTEXT HERE
+                request.session['email'] = q.email       
+                request.session['companyName'] = q.companyName
+                return redirect('viewas:viewase_view')
+                
+            else:
+                #IMPLEMENT CONTEXT HERE
+                request.session['email'] = q.email
+                request.session['name'] = q.firstname
+                request.session['surname'] = q.lastname
+                request.session['industry'] = q.industry
+                request.session['region'] = q.region
+                request.session['province'] = q.province
+                request.session['city'] = q.city
+                request.session['age'] = q.age
+                return redirect('viewas:viewasa_view')
+                # return render(request,'applicant.html',context)
+                
+                
+        else:
+            return HttpResponse("User does not EXIST!")

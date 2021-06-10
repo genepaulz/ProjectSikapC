@@ -1,0 +1,156 @@
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+    body {
+    
+    
+    background-color: #FFFFFF;
+    height: 100vh;
+    color: black;
+}
+    nav {
+        color: white;
+    }
+
+aside {
+    width: 30%;
+    padding-left: 15px;
+    margin-left: 15px;
+    float: right;
+    font-style: italic;
+    background-color: lightgray;
+}
+    
+.tat{
+    position: fixed;
+}
+
+.fill{
+    height: 10%;
+}
+
+.navbar{    
+    width: 100%;
+    position:fixed;
+    background: whitesmoke;
+
+}
+
+.nav-right {
+    float: right;
+}
+
+.button_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.Register{
+    width: 300px;
+    height: 100px;
+    border: none;
+    color: white;
+    background-color:#4bb3fd;
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 0 rgb(18, 158, 240);
+    transition: ease-out 0.3s;
+    font-size: 2rem;
+    outline: none;
+}
+
+.Register:hover{
+    box-shadow: inset 300px 0 0 0 rgb(18, 158, 240);
+    cursor: pointer;
+}
+
+</style>
+
+<body>
+    <nav class="navbar sticky-top navbar-light bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Sikap</a>
+          </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="text-secondary"><a href="#">Find Employers</a></li>
+                <li class="text-secondary"><a href="#">Profile</a></li>
+                <li><a href="#" class="text-secondary">Explore</a></li>
+            </ul>
+            <div class="nav-right">
+                <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">                        
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit">Search</button>
+                </form>   
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="fill"></div>
+    <div class="container">
+        <div style="background: #4bb3fd"class="jumbotron text-center color-primary">
+            <h1>picture ni dinhi</h1>
+            <p>YEEEET</p> 
+      </div>
+        <div class = "button_container">
+            <form action="" method="post">
+                {% csrf_token %}
+                <button class ="Register" type="submit" name="login">LOGIN</button>
+                <button class ="Register" type="submit" name="rega">REGISTER APPLICANT</button>
+                <button class ="Register" type="submit" name="rege">REGISTER EMPLOYER</button>
+            </form>
+        </div>
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia pulvinar dolor vitae tempor. 
+        Etiam ac lorem non felis iaculis pellentesque sed a metus. Quisque sit amet nulla magna. Curabitur 
+        a tellus vitae metus sodales ultrices. Curabitur volutpat magna vitae risus iaculis, eget malesuada 
+        ex hendrerit. Vivamus tincidunt enim ut facilisis facilisis. Nam dignissim mattis viverra.
+
+        Vestibulum vehicula felis et lorem tempor, ut eleifend leo vehicula. Mauris eu felis neque. Ut egestas, 
+        ipsum ac pretium tincidunt, enim nisi volutpat orci, sed lobortis elit lectus a lorem. Phasellus at ipsum 
+        eget purus efficitur iaculis eu id massa. Interdum et malesuada fames ac ante ipsum primis in 
+        faucibus. Sed eget egestas nunc. Vestibulum ornare urna sed rhoncus maximus. Suspendisse iaculis rutrum
+        hendrerit. Duis suscipit mattis laoreet. Cras sit amet interdum neque. Quisque consectetur nulla quis 
+        augue ornare, vitae scelerisque nulla ultrices. Morbi sodales posuere justo, quis porttitor nisl varius 
+        eget. Aenean ultricies pellentesque purus a mattis. Sed ut risus lacus. Vivamus lobortis tristique 
+        elementum. Quisque sodales lorem justo, et luctus orci finibus sit amet.
+        <br>
+        Vestibulum vehicula felis et lorem tempor, ut eleifend leo vehicula. Mauris eu felis neque. Ut egestas, 
+        ipsum ac pretium tincidunt, enim nisi volutpat orci, sed lobortis elit lectus a lorem. Phasellus at ipsum 
+        eget purus efficitur iaculis eu id massa. Interdum et malesuada fames ac ante ipsum primis in 
+        faucibus. Sed eget egestas nunc. Vestibulum ornare urna sed rhoncus maximus. Suspendisse iaculis rutrum
+        hendrerit. Duis suscipit mattis laoreet. Cras sit amet interdum neque. Quisque consectetur nulla quis 
+        augue ornare, vitae scelerisque nulla ultrices. Morbi sodales posuere justo, quis porttitor nisl varius 
+        eget. Aenean ultricies pellentesque purus a mattis. Sed ut risus lacus. Vivamus lobortis tristique 
+        elementum. Quisque sodales lorem justo, et luctus orci finibus sit amet.
+        <br>
+        <aside style="background: #04487c; color:white";>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia pulvinar dolor vitae 
+            tempor. Etiam ac lorem non felis iaculis pellentesque sed a metus. Quisque sit amet nulla magna. 
+            Curabitur a tellus vitae metus sodales ultrices. Curabitur volutpat magna vitae risus iaculis, 
+            eget malesuada ex hendrerit. Vivamus tincidunt enim ut facilisis facilisis. Nam dignissim mattis 
+            viverra.
+        </aside>
+        Vestibulum interdum metus eros, fermentum convallis dolor dignissim id. Cras porttitor diam ac interdum 
+        pretium. Donec tincidunt vestibulum mi. Vivamus faucibus neque quis risus maximus, vitae commodo felis 
+        congue. Nulla bibendum mauris sit amet eros pretium laoreet. Integer non nisi nulla. Nam ullamcorper ex 
+        vitae ultricies ullamcorper. Donec quis dolor eleifend, tempus nisi nec, viverra ante. Nam gravida 
+        luctus nunc ac rutrum. Nunc in consectetur massa. Quisque ornare blandit diam id efficitur.
+        <br>
+        Vivamus eros leo, lobortis vel interdum non, imperdiet ut justo. Nulla at congue nibh. Ut dictum 
+        luctus orci at maximus. Suspendisse elementum egestas metus. Phasellus non tellus a urna venenatis 
+        sagittis. Phasellus eget lorem ornare, cursus ipsum sed, facilisis eros. Mauris ut vehicula est. 
+        Proin dignissim diam in ipsum consectetur vehicula. Mauris vel faucibus neque. Lorem ipsum dolor 
+        sit amet, consectetur adipiscing elit. Vivamus maximus massa nec feugiat pretium.
+      </div>
+    </div>
+</body>
+</html>

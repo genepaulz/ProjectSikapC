@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rating',
     'registration',
     'verification',
-    'viewas'
+    'viewas',
+    'landing'
 ]
 
 MIDDLEWARE = [

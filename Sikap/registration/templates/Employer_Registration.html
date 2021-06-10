@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <style>
+    .navbar{    
+        background: whitesmoke;
+        opacity: 1;
+    }
+    .nav-right {
+        float: right;
+    }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar sticky-top navbar-light bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Sikap</a>
+          </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="text-secondary"><a href="#">Find Employers</a></li>
+                <li class="text-secondary"><a href="#">Profile</a></li>
+                <li><a href="#" class="text-secondary">Explore</a></li>
+            </ul>
+            <div class="nav-right">
+                <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">                        
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit">Search</button>
+                </form>   
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <form class="form-horizontal" action="" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="eemail">Email address</label>
+                <div class="col-md-8">
+                <input type="text" name="eemail" placeholder="Email" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="epassword">Password</label>
+                <div class="col-md-8">
+                <input type="password" name="epassword" placeholder="Password" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="ename">First Name</label>
+                <div class="col-md-8">
+                <input type="text" name="ename" id="" placeholder="Name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="esurname">Last Name</label>
+                <div class="col-md-8">
+                <input type="text" name="esurname" id="" placeholder="Last Name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="ecompanyName">Company</label>
+                <div class="col-md-8">
+                <input type="text" name="ecompanyName" placeholder="Company Name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="eindustry">Industry</label>
+                <div class="col-md-8">
+                <input type="text" name="eindustry" placeholder="Industry" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8">
+                <label class="control-label col-sm-2" for="aage"></label>    
+                <button type="submit" name="employer" class="btn btn-primary">Register</button><br><br>           
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

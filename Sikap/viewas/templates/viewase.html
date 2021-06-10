@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Employer ViewAs Page</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style1.css'%}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+</style>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    //var str = document.getElementById("materialInput").value;
+    //console.log(str);
+    $(document).ready(function(){
+        $("input").keypress(function(){
+            setTimeout(function(){ $.ajax({                
+            url: "get/ajax/friend",
+            data: {"d": $("#materialInput").val()},
+            dataType: "json",
+            beforeSend: function(){
+                if(($("#materialInput").val()).length <= 1){
+                    // $("#table_body").html("hello");
+                    return false;
+                }
+            return true;
+            },
+            success: function(result){                    
+                $("#table_body").html(result["d"]);                
+            }
+        }); 
+    }, 1500);
+        //$("#table_body").remove()                        
+                                   
+    });
+    
+    });
+
+    
+</script>
+<style>
+#table_body{
+    margin-top: 10%;
+}
+#results{
+    margin-top:1%;
+}
+.navbar{
+    width: 100%;
+    position: fixed;
+    background: whitesmoke;
+    opacity: 1;
+}
+.nav-right {
+    float: right;
+}
+</style>
+</head>
+<body>
+    <nav class="navbar sticky-top navbar-light bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Sikap</a>
+          </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="text-secondary"><a href="#">Find Employers</a></li>
+                <li class="text-secondary"><a href="#">Profile</a></li>
+                <li><a href="#" class="text-secondary">Explore</a></li>
+            </ul>
+            <div class="nav-right">
+                <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
+                    
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
+                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit" name="search">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav> 
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar">
+                <center>
+                    <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
+                </center>
+                <header> {{profile.companyName}} </header>
+                <ul class ="sidebar-nav">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Search</a></li>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <center>
+            <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
+        </center>
+        <header> {{request.session.companyName}} </header>
+        <ul class ="sidebar-nav">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Search</a></li>
+            <form action="" method="post">
+                {% csrf_token %}
+                <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
+            </form>
+        </ul>
+    </div>
+
+    <div class="col-sm-3" id="table_body">
+        <!-- <div class="card">
+            <img src="{% static 'img_avatar.png'%}" alt="Avatar" style="width:100%">
+            <div class="container">
+              <h4><b>John Doe</b></h4>
+              <p>Position</p>
+              <p>Years of Experience</p>
+              <p>Industry</p>
+              <p>Region</p>
+              <p>Province</p>
+              <p>City</p>
+              <p>Age</p>
+            </div>
+          </div> -->
+    </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

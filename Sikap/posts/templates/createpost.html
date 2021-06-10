@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Create Post</title>
+    <!-- {% load static %} -->
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <style>
+        *{
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+    outline: none;
+    color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    background: linear-gradient(to left, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    position: relative;
+    animation: change 20s ease-in-out infinite;
+}
+
+@keyframes change {
+    0%{
+        background-position: 0 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    } 
+    100%{
+        background-position: 0 50%;
+    } 
+}
+
+.wrapper{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    padding: 0 20px;
+}
+
+.post-form{
+    max-width: 550px;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.8);
+    padding: 30px;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0,0,0,0.13);
+}
+
+.input-fields{
+    display: flex;
+    flex-direction: column;
+    margin-right: 4%;
+}
+
+.input-fields .input{
+    margin: 10px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid whitesmoke;
+    padding: 10px;
+    color: whitesmoke;
+    width:100%;
+}
+
+.input-fields .checkbox{
+    position: relative;
+    width: 80px;
+    height: 40px;
+    -webkit-appearance: none;
+    background: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+    /*transition: .5s;*/
+}
+
+.input-fields .checkbox:checked{
+    background: #03a9f4;
+}
+
+.input-fields .checkbox:before{
+    content: '';
+    position: absolute;
+    width:40px;
+    height:40px;
+    border-radius: 20px;
+    top:0;
+    left:0;
+    background: #fff;
+    transform: scale(1,1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: .5s;
+}
+
+.input-fields .checkbox:checked:before{
+    left: 40px;
+}
+
+.input-fields .submit{
+    padding: 15px;
+    float: right;
+    background: #19B3D3;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: .5s;
+    transition-property: background;
+}
+
+.input-fields .submit:hover{
+    background: #fff;
+    color: #0D9DBB;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class ="post-form">
+            <div class ="input-fields">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{profile.email}}" name="email">
+                    <input type="number" class="input" name="yearsOfExperience" placeholder="Years of Experience">
+                    <input type="text" class="input" name="position" placeholder="Position / Job Title">
+                    <input type="text" class="input" name="industry" placeholder="Industry" value="{{request.session.industry}}">
+                    <input type="text" class="input" name="region" placeholder="Region" value="{{request.session.region}}">
+                    <input type="text" class="input" name="province" placeholder="Province" value="{{request.session.province}}">
+                    <input type="text" class="input" name="city" placeholder="City" value="{{request.session.city}}">
+                    <input type="number" class="input" name="age" placeholder="Age" value="{{request.session.age}}">
+                    <br>
+                    <br>
+                    <input type="checkbox" class="checkbox" name="isAgeViewable">
+                    <p>Display Age?</p>
+                    <button type="submit" class="submit" name="posts">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
