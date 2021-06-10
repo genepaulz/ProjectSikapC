@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'login',
+    'match',
+    'posts',
+    'rating',
+    'registration',
+    'verification',
+    'viewas'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +82,14 @@ WSGI_APPLICATION = 'Sikap.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'projectsikap',
+        'USER': 'root',
+        'Password:': '',
+        'PORT': '3306',
     }
 }
+
 
 
 # Password validation
