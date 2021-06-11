@@ -1,4 +1,5 @@
 from django import forms
+from .models import *
 
 class postsForm(forms.ModelForm):
 
@@ -7,14 +8,16 @@ class postsForm(forms.ModelForm):
         fields = [
             'email',
             'firstname',
-            'surname',
-            'position',
-            'yearsOfExperience',
+            'lastname',
             'industry',
             'region',
             'province',
             'city',
             'age',
-            'dateadded',
-            'isAgeViewable'
+            'industry',
+            'yearsOfExperience',
+            'position',
+            'dateAdded',
+            'isAgeViewable',
+            'isDeleted'
         ]

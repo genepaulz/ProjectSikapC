@@ -30,19 +30,5 @@ class PostsView(View):
         else:
             isAgeViewable = 0
 
-        form = Posts(
-            yearsOfExperience = yearsOfExperience,
-            position = position,
-            industry = industry,
-            region = region,
-            province = province,
-            city = city,
-            age = age,
-            dateadded = datetime.now(),
-            email = request.session['email'],
-            isAgeViewable = isAgeViewable,
-            firstname = request.session['name'],
-            lastname = request.session['surname']
-        )
-        form.save()
+        
         return redirect('viewas:viewasa_view')

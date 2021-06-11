@@ -16,6 +16,11 @@ class Posts(models.Model):
     dateAdded = models.DateTimeField()
     isDeleted = models.IntegerField()
 
+    # def isvalid():
+    #     return 1
+    # def ishired():
+    #     return 1
+
     class Meta:
         db_table = "Posts"
 

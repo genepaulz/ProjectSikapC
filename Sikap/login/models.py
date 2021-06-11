@@ -1,5 +1,8 @@
 from django.db import models
 from rating.models import Rating
+from posts.forms import *
+from requests import *
+from datetime import *
 # Create your models here.
 
 
@@ -33,6 +36,23 @@ class Applicant(models.Model):
     age = models.IntegerField()
     position = models.CharField(max_length=100)
     ratings = models.ForeignKey(Rating, on_delete=models.CASCADE)
+
+    def createpost(yearsOfExperience,position,industry,region,province,city,age,email,isAgeViewable,firstname,lastname):
+        form = Posts(
+            yearsOfExperience = yearsOfExperience,
+            position = position,
+            industry = industry,
+            region = region,
+            province = province,
+            city = city,
+            age = age,
+            dateadded = datetime.now(),
+            email = request.session['email'],
+            isAgeViewable = isAgeViewable,
+            firstname = request.session['firstname'],
+            lastname = request.session['lastnamename']
+        )
+        form.save()
 
     class Meta:
         db_table = "Applicant"
