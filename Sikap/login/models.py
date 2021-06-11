@@ -1,5 +1,6 @@
 from django.db import models
 from rating.models import Rating
+from .forms import *
 # Create your models here.
 
 
@@ -23,6 +24,35 @@ class User(models.Model):
     def verify_password(self, raw_password):
         return pbkdf2_sha256.verify(raw_password, self.password)
 
+    def register(email,password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted,age):
+        form = User(
+            email = email,
+            password = password,
+            firstname = firstname,
+            lastname = lastname,
+            isVerified = isVerified,
+            isDeleted = isDeleted,
+            companyName = "",
+            user_type = user_type,
+            industry = industry,
+            region = region,
+            province = province,
+            city = city,
+        )
+        form.save()
+        form1 = Applicant(
+                applicantUser = form,
+                age = age,
+                postion = ""
+        )
+        form1.save()
+        form2 = Rating(
+            raterEmail = form1,
+            rating = 0.0,
+            numOfRates = 0
+        )
+        form2.save()
+
     class Meta:
         db_table = "User"
 
@@ -33,6 +63,7 @@ class Applicant(models.Model):
     age = models.IntegerField()
     position = models.CharField(max_length=100)
     ratings = models.ForeignKey(Rating, on_delete=models.CASCADE)
+
 
     class Meta:
         db_table = "Applicant"

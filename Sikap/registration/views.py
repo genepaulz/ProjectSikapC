@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views.generic import View,TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
+from login.models import User
+from login.models import Applicant
 from .models import *
 from django.template import *
 from .import views
@@ -18,7 +20,7 @@ class RegisterViewA(View):
 
     def post(self,request):
         if 'applicant' in request.POST:
-                
+
             email = request.POST.get("aemail")
             password = request.POST.get("apassword")
             firstname = request.POST.get("aname")
@@ -26,6 +28,7 @@ class RegisterViewA(View):
             user_type = 0
             isVerified = 0
             companyName=""
+            isDeleted = 0
             industry = request.POST.get("aindustry")
             region = request.POST.get("aregion")
             province = request.POST.get("aprovince")
@@ -34,7 +37,8 @@ class RegisterViewA(View):
 
             enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16)
 
-            User.register(email,enc_password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,age)
+            User.register(email,enc_password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted,age)
+            
             return redirect('app:landing_view')
         return HttpResponse("Fail")
 
@@ -43,7 +47,7 @@ class RegisterViewE(View):
         return render(request,'Employer_Registration.html')
 
     def post(self,request):
-        if 'employer' in request.POST: 
+        if 'employer' in request.POST:
             email = request.POST.get("eemail")
             password = request.POST.get("epassword")
             name = request.POST.get("ename")
@@ -57,7 +61,7 @@ class RegisterViewE(View):
             enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16)
 
 
-            
+
             print(email)
             print(password)
             print(name)
@@ -67,7 +71,7 @@ class RegisterViewE(View):
             print(industry)
 
             form = User(
-                
+
                 email = email,
                 password = enc_password,
                 firstname = name,
