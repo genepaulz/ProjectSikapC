@@ -5,7 +5,6 @@ from django.db.models.fields.related import ForeignKey
 # Create your models here.
 
 class Posts(models.Model):
-    applicantID = models.ForeignKey("login.Applicant", on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
     firstname = models.CharField(max_length = 100)
     lastname = models.CharField(max_length = 100)   
@@ -19,6 +18,7 @@ class Posts(models.Model):
     dateAdded = models.DateTimeField()
     isAgeViewable = models.IntegerField()
     isDeleted = models.IntegerField()
+    applicantID = models.ForeignKey("login.Applicant", on_delete=models.CASCADE)
 
     # def isvalid():
     #     return 1

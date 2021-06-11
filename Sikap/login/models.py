@@ -1,7 +1,7 @@
 from django.db import models
 from rating.models import Rating
 from datetime import *
-from posts.forms import Posts
+# from posts.forms import Posts
 from passlib.hash import pbkdf2_sha256
 # Create your models here.
 
@@ -56,9 +56,9 @@ class User(models.Model):
         )
         form1.save()
 
-    # def login(email,password):
-    #     q = User.models.get(email=email)
-    #     return verify_Password(password)
+    def login(email,password):
+        q = User.models.get(email=email)
+        return verify_Password(password)
         
 
     class Meta:

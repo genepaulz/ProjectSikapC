@@ -1,3 +1,4 @@
+from login.models import Applicant
 from django import forms
 from .models import *
 
