@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views.generic import View,TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import *
+from login.models import Applicant
 from django.template import *
 from .import views
 from datetime import *
@@ -30,5 +30,5 @@ class PostsView(View):
         else:
             isAgeViewable = 0
 
-        
+        Applicant.createpost(yearsOfExperience,position,industry,region,province,city,age,isAgeViewable)
         return redirect('viewas:viewasa_view')

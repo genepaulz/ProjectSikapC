@@ -1,11 +1,11 @@
-from dango import forms
-from .models import *
+from django import forms
+from .models import Rating
 
 class ratingForm(forms.ModelForm):
 
     class Meta:
         model = Rating
-        field = [
+        fields = [
             'raterEmail',
             'rating',
             'numOfRates'

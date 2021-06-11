@@ -39,7 +39,7 @@ class RegisterViewA(View):
 
             User.register(email,enc_password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted,age)
             
-            return redirect('app:landing_view')
+            return redirect('landing:landing_view')
         return HttpResponse("Fail")
 
 class RegisterViewE(View):
@@ -86,5 +86,5 @@ class RegisterViewE(View):
                 age = 0
             )
             form.save()
-            return redirect('app:landing_view')
+            return redirect('landing:landing_view')
         return HttpResponse("Fail")

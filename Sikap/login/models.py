@@ -1,8 +1,7 @@
 from django.db import models
 from rating.models import Rating
-from login.models import *
-from .forms import *
 from datetime import *
+from posts.forms import Posts
 from passlib.hash import pbkdf2_sha256
 # Create your models here.
 
@@ -43,18 +42,24 @@ class User(models.Model):
             city = city,
         )
         form.save()
-        form1 = Applicant(
-                applicantUser = form,
-                age = age,
-                postion = ""
-        )
-        form1.save()
         form2 = Rating(
-            raterEmail = form1,
+            
             rating = 0.0,
             numOfRates = 0
         )
         form2.save()
+        form1 = Applicant(
+                applicantUser = form,
+                age = age,
+                position = "",
+                ratings = form2
+        )
+        form1.save()
+
+    # def login(email,password):
+    #     q = User.models.get(email=email)
+    #     return verify_Password(password)
+        
 
     class Meta:
         db_table = "User"
@@ -67,9 +72,7 @@ class Applicant(models.Model):
     position = models.CharField(max_length=100)
     ratings = models.ForeignKey(Rating, on_delete=models.CASCADE)
 
-<<<<<<< HEAD
-=======
-    def createpost(yearsOfExperience,position,industry,region,province,city,age,email,isAgeViewable,firstname,lastname):
+    def createpost(yearsOfExperience,position,industry,region,province,city,age,isAgeViewable):
         form = Posts(
             yearsOfExperience = yearsOfExperience,
             position = position,
@@ -85,7 +88,6 @@ class Applicant(models.Model):
             lastname = request.session['lastnamename']
         )
         form.save()
->>>>>>> e7ffd3a03e0eda54195d4b4ac4c516a20350fcc4
 
     class Meta:
         db_table = "Applicant"

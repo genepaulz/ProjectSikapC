@@ -17,7 +17,7 @@ class ViewAsAView(View):
     
     def post(self,request):
         if('post' in request.POST):
-            return redirect('app:posts_view')
+            return redirect('posts:posts_view')
         elif('logout' in request.POST):
             del request.session['email']
             del request.session['name']

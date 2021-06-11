@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Rating(models.Model):
-    raterEmail = models.ManyToManyField("login.Employer")
+    raterEmail = models.ManyToManyField("login.Employer",blank=True, null=True)
     rating = models.FloatField()
     numOfRates = models.IntegerField()
 
