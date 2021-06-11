@@ -1,20 +1,24 @@
 from django import forms
+from .models import *
 
 class postsForm(forms.ModelForm):
 
     class Meta:
         model = Posts
         fields = [
+            'applicantID',
             'email',
             'firstname',
-            'surname',
-            'position',
-            'yearsOfExperience',
+            'lastname',
             'industry',
             'region',
             'province',
             'city',
             'age',
-            'dateadded',
-            'isAgeViewable'
+            'industry',
+            'yearsOfExperience',
+            'position',
+            'dateAdded',
+            'isAgeViewable',
+            'isDeleted'
         ]
