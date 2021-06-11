@@ -1,8 +1,9 @@
 from django.db import models
-from rating.models import Rating
-from posts.forms import *
-from requests import *
+from rating.models import *
+from login.models import *
+from .forms import *
 from datetime import *
+from passlib.hash import pbkdf2_sha256
 # Create your models here.
 
 

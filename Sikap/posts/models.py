@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
-from login.models import Applicant
+from login.models import *
+from .models import *
 # Create your models here.
 
 class Posts(models.Model):

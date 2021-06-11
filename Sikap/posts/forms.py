@@ -6,6 +6,7 @@ class postsForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
+            'applicantID',
             'email',
             'firstname',
             'lastname',
