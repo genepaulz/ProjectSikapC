@@ -1,8 +1,10 @@
 from django.db import models
-from rating.models import Rating
 from datetime import *
-# from posts.forms import Posts
+from rating.models import Rating
+from posts.forms import *
 from passlib.hash import pbkdf2_sha256
+
+
 # Create your models here.
 
 
@@ -72,20 +74,21 @@ class Applicant(models.Model):
     position = models.CharField(max_length=100)
     ratings = models.ForeignKey(Rating, on_delete=models.CASCADE)
 
-    def createpost(yearsOfExperience,position,industry,region,province,city,age,isAgeViewable):
+    def createpost(email,firstname,lastname,region,province,city,age,industry,yearsOfExperience,position,isAgeViewable):
         form = Posts(
-            yearsOfExperience = yearsOfExperience,
-            position = position,
-            industry = industry,
+            email = email,
+            firstname = firstname,
+            lastname = lastname,
             region = region,
             province = province,
             city = city,
             age = age,
-            dateadded = datetime.now(),
-            email = request.session['email'],
+            industry = industry,
+            yearsOfExperience = yearsOfExperience,
+            position = position,
+            dateAdded = datetime.now(),
             isAgeViewable = isAgeViewable,
-            firstname = request.session['firstname'],
-            lastname = request.session['lastnamename']
+            isDeleted = 0
         )
         form.save()
 

@@ -30,5 +30,11 @@ class PostsView(View):
         else:
             isAgeViewable = 0
 
-        Applicant.createpost(yearsOfExperience,position,industry,region,province,city,age,isAgeViewable)
+        email = request.session.get('email')
+        firstname = request.session.get('firstname')
+        lastname = request.session.get('lastname')
+        print(email)
+        print(firstname)
+        print(lastname)
+        Applicant.createpost(email,firstname,lastname,region,province,city,age,industry,yearsOfExperience,position,isAgeViewable)
         return redirect('viewas:viewasa_view')
