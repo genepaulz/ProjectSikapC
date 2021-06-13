@@ -1,4 +1,4 @@
-from login.models import Applicant
+# from login.models import Applicant
 from django import forms
 from .models import *
 
@@ -7,7 +7,6 @@ class postsForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
-            'applicantID',
             'email',
             'firstname',
             'lastname',

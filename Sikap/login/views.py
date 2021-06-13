@@ -36,7 +36,7 @@ class LoginView(View):
                 request.session['region'] = q.region
                 request.session['province'] = q.province
                 request.session['city'] = q.city
-                a = Applicant.objects.get(id = q.id/3)
+                a = Applicant.objects.get(id = q.id)
                 request.session['age'] = a.id
                 return redirect('viewas:viewasa_view')
                 # return render(request,'applicant.html',context)
