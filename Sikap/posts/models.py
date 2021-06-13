@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
-
+# from login.models import Applicant
 
 # Create your models here.
 
@@ -18,7 +18,7 @@ class Posts(models.Model):
     dateAdded = models.DateTimeField()
     isAgeViewable = models.IntegerField()
     isDeleted = models.IntegerField()
-    applicantID = models.ForeignKey("login.Applicant", on_delete=models.CASCADE)
+    applicantID = models.ForeignKey("login.Applicant", on_delete=models.CASCADE,blank=True,null=True)
 
     # def isvalid():
     #     return 1

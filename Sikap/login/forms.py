@@ -1,5 +1,6 @@
 from django import forms
 
+
 class userForm(forms.ModelForm):
 
     class Meta:

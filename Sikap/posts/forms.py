@@ -1,6 +1,5 @@
-# from login.models import Applicant
 from django import forms
-from .models import *
+from .models import Posts
 
 class postsForm(forms.ModelForm):
 
@@ -10,15 +9,15 @@ class postsForm(forms.ModelForm):
             'email',
             'firstname',
             'lastname',
-            'industry',
             'region',
             'province',
             'city',
             'age',
-            'industry',
+            'industry',            
             'yearsOfExperience',
             'position',
             'dateAdded',
             'isAgeViewable',
-            'isDeleted'
+            'isDeleted',
+            # 'applicantID'
         ]

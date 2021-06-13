@@ -30,8 +30,8 @@ class LoginView(View):
             else:
                 #IMPLEMENT CONTEXT HERE
                 request.session['email'] = q.email
-                request.session['name'] = q.firstname
-                request.session['surname'] = q.lastname
+                request.session['firstname'] = q.firstname
+                request.session['lastname'] = q.lastname
                 request.session['industry'] = q.industry
                 request.session['region'] = q.region
                 request.session['province'] = q.province
@@ -44,3 +44,5 @@ class LoginView(View):
                 
         else:
             return HttpResponse("User does not EXIST!")
+
+
