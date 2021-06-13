@@ -72,22 +72,23 @@ class Applicant(models.Model):
     position = models.CharField(max_length=100)
     ratings = models.ForeignKey(Rating, on_delete=models.CASCADE)
 
-    def createpost(yearsOfExperience,position,industry,region,province,city,age, email):
-        a = Applicant.objects.get(applicantUser = User.objects.get(email="g@g.com"))
+    def createpost(email,firstname,lastname,region,province,city,age,industry,yearsOfExperience,position,isAgeViewable):
+        a = Applicant.objects.get(applicantUser = User.objects.get(email=email))
         form = Posts(
             applicantID = a,
-            yearsOfExperience = yearsOfExperience,
-            position = position,
-            industry = industry,
+            email = email,
+            firstname = firstname,
+            lastname = lastname,
             region = region,
             province = province,
             city = city,
             age = age,
+            industry = industry,
+            yearsOfExperience = yearsOfExperience,
+            position = position,
             dateAdded = datetime.now(),
-            email = email,
-            # isAgeViewable = isAgeViewable,
-            # firstname = firstname,
-            # lastname = lastname
+            isAgeViewable = isAgeViewable,
+            isDeleted = 0
         )
         form.save()
 
