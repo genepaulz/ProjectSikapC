@@ -10,7 +10,6 @@ class userForm(forms.ModelForm):
             'password',
             'firstname',
             'lastname',
-            'companyName',
             'industry',
             'region',
             'province',
