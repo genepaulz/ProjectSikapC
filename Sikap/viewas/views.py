@@ -20,8 +20,8 @@ class ViewAsAView(View):
             return redirect('posts:posts_view')
         elif('logout' in request.POST):
             del request.session['email']
-            del request.session['name']
-            del request.session['surname']
+            del request.session['firstname']
+            del request.session['lastname']
             del request.session['industry']
             del request.session['region']
             del request.session['province']
