@@ -26,7 +26,6 @@ class RegisterViewA(View):
             lastname = request.POST.get("asurname")
             user_type = 0
             isVerified = 0
-            
             isDeleted = 0
             industry = request.POST.get("aindustry")
             region = request.POST.get("aregion")
@@ -35,7 +34,6 @@ class RegisterViewA(View):
             age = request.POST.get("aage")
 
             enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16)
-
             User.registerApplicant(email,enc_password,firstname,lastname,user_type,isVerified,industry,region,province,city,isDeleted,age)
             
             return redirect('landing:landing_view')
@@ -61,18 +59,9 @@ class RegisterViewE(View):
             isDeleted = 0
 
             #encrypt password
+
             enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16)
-
-
-
-            print(email)
-            print(password)
-            print(firstname)
-            print(lastname)
-            print(user_type)
-            print(isVerified)
-            print(industry)
-
             User.registerEmployer(email,enc_password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted)
+
             return redirect('landing:landing_view')
         return HttpResponse("Fail")

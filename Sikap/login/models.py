@@ -77,7 +77,21 @@ class User(models.Model):
             matches = 0
         )
         form3.save()
+
+
+    def login(email,password):
+        q = User.objects.get(email=email)
+        if(q.verify_password(password)):
+            if(q.user_type == 0):
+                var = 0
+            else:
+                var = 1
+
+        return var
         
+        
+
+
 
     # def login(email,password):
     #     q = User.models.get(email=email)

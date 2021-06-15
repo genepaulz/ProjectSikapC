@@ -18,31 +18,28 @@ class LoginView(View):
     def post(self,request):
         email = request.POST.get("email")
         password = request.POST.get("pass")
-
-        q = User.objects.get(email=email)
-        if(q.verify_password(password)):
-            if(q.user_type):
-                #IMPLEMENT CONTEXT HERE
-                request.session['email'] = q.email       
-                request.session['companyName'] = q.companyName
-                return redirect('viewas:viewase_view')
-                
-            else:
-                #IMPLEMENT CONTEXT HERE
-                request.session['email'] = q.email
-                request.session['firstname'] = q.firstname
-                request.session['lastname'] = q.lastname
-                request.session['industry'] = q.industry
-                request.session['region'] = q.region
-                request.session['province'] = q.province
-                request.session['city'] = q.city
-                a = Applicant.objects.get(id = q.id)
-                request.session['age'] = a.age
-                return redirect('viewas:viewasa_view')
-                # return render(request,'applicant.html',context)
-                
-                
-        else:
-            return HttpResponse("User does not EXIST!")
+        q = User.objects.get(email=email)    
+        
+        if(User.login(email,password) == 1):
+            #IMPLEMENT CONTEXT HERE
+            request.session['email'] = q.email   
+            e = Employer.objects.get(employerUser_id = q.id)    
+            request.session['companyName'] = e.companyName
+            return redirect('viewas:viewase_view')        
+        else:    
+            #IMPLEMENT CONTEXT HERE
+            request.session['email'] = q.email
+            request.session['firstname'] = q.firstname
+            request.session['lastname'] = q.lastname
+            request.session['industry'] = q.industry
+            request.session['region'] = q.region
+            request.session['province'] = q.province
+            request.session['city'] = q.city
+            a = Applicant.objects.get(id = q.id)
+            request.session['age'] = a.age
+            return redirect('viewas:viewasa_view')
+            # return render(request,'applicant.html',context)        
+        #else:
+            #return HttpResponse("User does not EXIST!")
 
 
