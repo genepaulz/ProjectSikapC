@@ -6,5 +6,5 @@ urlpatterns = [
     
     path('a',views.ViewAsAView.as_view(),name="viewasa_view"),
     path('e',views.ViewAsEView.as_view(),name="viewase_view"),
-    
+      
 ]

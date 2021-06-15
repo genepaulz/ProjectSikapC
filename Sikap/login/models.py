@@ -102,7 +102,6 @@ class User(models.Model):
         db_table = "User"
 
 
-
 class Applicant(models.Model):
     applicantUser = models.OneToOneField(User,on_delete=models.CASCADE)
     age = models.IntegerField()
@@ -139,3 +138,5 @@ class Employer(models.Model):
 
     class Meta:
         db_table = "Employer"
+
+    # def search(string):
