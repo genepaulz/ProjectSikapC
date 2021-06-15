@@ -20,14 +20,13 @@ class RegisterViewA(View):
 
     def post(self,request):
         if 'applicant' in request.POST:
-
             email = request.POST.get("aemail")
             password = request.POST.get("apassword")
             firstname = request.POST.get("aname")
             lastname = request.POST.get("asurname")
             user_type = 0
             isVerified = 0
-            companyName=""
+            
             isDeleted = 0
             industry = request.POST.get("aindustry")
             region = request.POST.get("aregion")
@@ -37,7 +36,7 @@ class RegisterViewA(View):
 
             enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16)
 
-            User.register(email,enc_password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted,age)
+            User.registerApplicant(email,enc_password,firstname,lastname,user_type,isVerified,industry,region,province,city,isDeleted,age)
             
             return redirect('landing:landing_view')
         return HttpResponse("Fail")
@@ -50,12 +49,16 @@ class RegisterViewE(View):
         if 'employer' in request.POST:
             email = request.POST.get("eemail")
             password = request.POST.get("epassword")
-            name = request.POST.get("ename")
-            surname = request.POST.get("esurname")
+            firstname = request.POST.get("ename")
+            lastname = request.POST.get("esurname")
             user_type = 1
             isVerified = 0
             companyName = request.POST.get("ecompanyName")
             industry = request.POST.get("eindustry")
+            region = ""
+            province = ""
+            city = ""
+            isDeleted = 0
 
             #encrypt password
             enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16)
@@ -64,27 +67,12 @@ class RegisterViewE(View):
 
             print(email)
             print(password)
-            print(name)
-            print(surname)
+            print(firstname)
+            print(lastname)
             print(user_type)
             print(isVerified)
             print(industry)
 
-            form = User(
-
-                email = email,
-                password = enc_password,
-                firstname = name,
-                lastname = surname,
-                user_type = user_type,
-                isVerified = isVerified,
-                companyName = companyName,
-                industry = industry,
-                region = "",
-                province = "",
-                city = "",
-                age = 0
-            )
-            form.save()
+            User.registerEmployer(email,enc_password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted)
             return redirect('landing:landing_view')
         return HttpResponse("Fail")

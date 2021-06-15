@@ -26,7 +26,7 @@ class User(models.Model):
     def verify_password(self, raw_password):
         return pbkdf2_sha256.verify(raw_password, self.password)
 
-    def register(email,password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted,age):
+    def registerApplicant(email,password,firstname,lastname,user_type,isVerified,industry,region,province,city,isDeleted,age):
         form = User(
             email = email,
             password = password,
@@ -34,7 +34,6 @@ class User(models.Model):
             lastname = lastname,
             isVerified = isVerified,
             isDeleted = isDeleted,
-            companyName = "",
             user_type = user_type,
             industry = industry,
             region = region,
@@ -42,8 +41,7 @@ class User(models.Model):
             city = city,
         )
         form.save()
-        form2 = Rating(
-            
+        form2 = Rating(            
             rating = 0.0,
             numOfRates = 0
         )
@@ -55,6 +53,32 @@ class User(models.Model):
                 ratings = form2
         )
         form1.save()
+
+    def registerEmployer(email,password,firstname,lastname,user_type,isVerified,companyName,industry,region,province,city,isDeleted):
+        form = User(
+            email = email,
+            password = password,
+            firstname = firstname,
+            lastname = lastname,
+            isVerified = isVerified,
+            isDeleted = isDeleted,
+            user_type = user_type,
+            industry = industry,
+            region = region,
+            province = province,
+            city = city
+        )
+        form.save()
+        # form4 = Matches(
+
+        # )
+        form3 = Employer(
+            employerUser = form,
+            companyName = companyName,
+            matches = 0
+        )
+        form3.save()
+        
 
     # def login(email,password):
     #     q = User.models.get(email=email)

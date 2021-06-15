@@ -18,6 +18,5 @@ class postsForm(forms.ModelForm):
             'position',
             'dateAdded',
             'isAgeViewable',
-            'isDeleted',
-            # 'applicantID'
+            'isDeleted'
         ]
