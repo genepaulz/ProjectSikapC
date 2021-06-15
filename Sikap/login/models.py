@@ -11,7 +11,6 @@ class User(models.Model):
     password = models.CharField(max_length = 100)
     firstname = models.CharField(max_length = 100)
     lastname = models.CharField(max_length = 100)
-    companyName = models.CharField(max_length = 100)
     industry = models.CharField(max_length = 100)
     region = models.CharField(max_length = 10)
     province = models.CharField(max_length = 100)
