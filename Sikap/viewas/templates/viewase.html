@@ -27,7 +27,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+<!-- <script>
     //var str = document.getElementById("materialInput").value;
     //console.log(str);
     $(document).ready(function(){
@@ -55,7 +55,7 @@
     });
 
     
-</script>
+</script> -->
 <style>
 #table_body{
     margin-top: 10%;
@@ -88,7 +88,7 @@
             </ul>
             <div class="nav-right">
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
-                    
+                    {% csrf_token %}
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
                     <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit" name="search">Search</button>
                 </form>
@@ -131,8 +131,10 @@
     </div>
 
     <div class="col-sm-3" id="table_body">
-        <!-- <div class="card">
-            <img src="{% static 'img_avatar.png'%}" alt="Avatar" style="width:100%">
+        {% if context!=NULL %}
+        {% for %}
+        <div class="card">
+            <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
             <div class="container">
               <h4><b>John Doe</b></h4>
               <p>Position</p>
@@ -143,7 +145,8 @@
               <p>City</p>
               <p>Age</p>
             </div>
-          </div> -->
+          </div>
+        {% endif %}
     </div>
     </div>
 </div>

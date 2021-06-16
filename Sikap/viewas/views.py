@@ -44,6 +44,15 @@ class ViewAsEView(View):
             del request.session['email']
             del request.session['companyName']
             return redirect('landing:landing_view')
+        elif('search' in request.POST):
+            filt = request.POST.get("materialInput")
+            qs1 = Posts.objects.filter(industry__icontains=filt)
+            qs2 = Posts.objects.filter(region__icontains=filt)            
+            qs3 = Posts.objects.filter(province__icontains=filt)
+            qs4 = Posts.objects.filter(city__icontains=filt)
+            qs5 = Posts.objects.filter(position__icontains=filt)
+            
+            return render(request,'viewase.html',context)
 
 def LiveSearch(request):
     template_name = "index.html"
@@ -77,6 +86,14 @@ def LiveSearch(request):
             d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
     print(d)
     mat = Posts.objects.filter(city__icontains=filt)
+    for objects in mat:
+        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        if(objects.isAgeViewable):
+            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
+        else:
+            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
+    print(d)
+    mat = Posts.objects.filter(position__icontains=filt)
     for objects in mat:
         # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
         if(objects.isAgeViewable):
