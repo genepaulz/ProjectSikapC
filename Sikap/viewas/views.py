@@ -46,6 +46,7 @@ class ViewAsEView(View):
             return redirect('landing:landing_view')
         elif('search' in request.POST):
             filt = request.POST.get("materialInput")
+            
             qs1 = Posts.objects.filter(industry__icontains=filt)
             qs2 = Posts.objects.filter(region__icontains=filt)            
             qs3 = Posts.objects.filter(province__icontains=filt)
