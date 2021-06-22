@@ -25,6 +25,10 @@ class User(models.Model):
     def verify_password(self, raw_password):
         return pbkdf2_sha256.verify(raw_password, self.password)
 
+    def debug_password(raw_password):
+        enc_password = pbkdf2_sha256.encrypt(raw_password, rounds=10,salt_size=16)
+        return enc_password
+
     def registerApplicant(email,password,firstname,lastname,user_type,isVerified,industry,region,province,city,isDeleted,age):
         form = User(
             email = email,
