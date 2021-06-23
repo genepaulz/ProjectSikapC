@@ -78,23 +78,30 @@ class User(models.Model):
         )
         form3.save()
 
-    
-
     def login(email,password):
         q = User.objects.get(email=email)
         if(q.verify_password(password)):
-            if(q.user_type == 0):
+            if(User.viewas(q.user_type)==0):
                 flag = 0
             else:
                 flag = 1
-        User.viewas(flag)
+        
+        return flag
+
+    def viewas(user_type):
+        if(user_type == 0):
+            flag = 0
+        elif(user_type == 1):
+            flag = 1
+        else:
+            return None
         return flag
     
-    def viewas(user_type):
-        flag=0
-        if user_type:
-            flag=1        
-        return flag
+    # def viewas(user_type):
+    #     flag=0
+    #     if user_type:
+    #         flag=1        
+    #     return flag
 
     class Meta:
         db_table = "User"
