@@ -22,3 +22,13 @@ class LandingView(View):
             return redirect('registration:registera_view')
         elif('rege' in request.POST):
             return redirect('registration:registere_view')
+        # elif('encrypt' in request.POST):
+        #     qs = User.objects.all()
+        #     id = 1
+        #     for user in qs:
+        #         encryptedPassword = User.debug_password(user.password)
+        #         form = User.objects.filter(id=id).update(
+        #             password = encryptedPassword,                    
+        #         )
+        #         id+=1
+                
