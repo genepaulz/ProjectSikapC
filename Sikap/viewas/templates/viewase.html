@@ -22,58 +22,6 @@
   padding: 2px 16px;
 }
 
-.dropdown-check-list {
-  display: inline-block;
-}
-
-.dropdown-check-list .anchor {
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  padding: 5px 50px 5px 10px;
-  border: 1px solid #ccc;
-}
-
-.dropdown-check-list .anchor:after {
-  position: absolute;
-  content: "";
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-  padding: 5px;
-  right: 10px;
-  top: 20%;
-  -moz-transform: rotate(-135deg);
-  -ms-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-}
-
-.dropdown-check-list .anchor:active:after {
-  right: 8px;
-  top: 21%;
-}
-
-.dropdown-check-list ul.items {
-  padding: 2px;
-  display: none;
-  margin: 0;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-.dropdown-check-list ul.items li {
-  list-style: none;
-}
-
-.dropdown-check-list.visible .anchor {
-  color: #0094ff;
-}
-
-.dropdown-check-list.visible .items {
-  display: block;
-}
-
 </style>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -141,37 +89,49 @@
             <div class="nav-right">
                 <div id="list1" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter Region</span>
-                    <ul class="items" name="region_filt">
-                      <li><input type="radio" id="region_filt" value="VII"/>VII</li>
-                      <!--<li><input type="checkbox" />II</li>
-                      <li><input type="checkbox" />III</li>
-                      <li><input type="checkbox" />IV</li>
-                      <li><input type="checkbox" />V</li>
-                      <li><input type="checkbox" />VI</li>
-                      <li><input type="checkbox" />VII</li>
-                      <li><input type="checkbox" />VIII</li>
-                      <li><input type="checkbox" />IX</li>
-                      <li><input type="checkbox" />X</li>
-                      <li><input type="checkbox" />XI</li>
-                      <li><input type="checkbox" />XII</li>-->
-                    </ul>
+                    <select name="Region" id="region">
+                        <option value=""></option>
+                        <option value="NCR">NCR</option>
+                        <option value="CAR">CAR</option>
+                        <option value="I">Region I</option>
+                        <option value="II">Region II</option>
+                        <option value="III">Region III</option>
+                        <option value="IV-A">Region IV-A</option>
+                        <option value="V">Region V</option>
+                        <option value="VI">Region VI</option>
+                        <option value="VII">Region VII</option>
+                        <option value="VIII">Region VIII</option>
+                        <option value="IX">Region IX</option>                      
+                    </select>
+                </div>
+                <div id="list2" class="dropdown-check-list" tabindex="100">
+                    <span class="anchor">Filter Province</span>
+                    <select name="Province" id="province_filt">
+                        <option value=""></option>
+                        <option value="Cebu">Cebu</option>
+                        <option value="Bohol">Bohol</option>
+                        <option value="Negros Oriental">Negros Oriental</option>
+                        <option value="Negraos OCcidental">Negros Occidental</option>
+                        <option value="Siquijor">Siquijor</option>
+                        <option value="Leyte">Leyte</option>
+                        <option value="Samar">Samar</option>
+                        <option value="Aklan">Aklan</option>
+                        <option value="Surigao Del Sur">Surigao Del Sur</option>
+                        <option value="Benguet">Benguet</option>
+                        <option value="Davao del Sur">Davao del Sur</option>                      
+                    </select>
                 </div>
                 <div id="list2" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter Province</span>
                     <ul class="items" name="province_filt">
                       <li><input type="radio" id="province_filt" value="Cebu"/>Cebu</li>
-                      <!--<li><input type="checkbox" />Bohol</li>
-                      <li><input type="checkbox" />Negros Occidental</li>
-                      <li><input type="checkbox" />Negros Oriental</li>
-                      <li><input type="checkbox" />SIquijor</li>
-                      <li><input type="checkbox" />Palawan</li>
-                      <li><input type="checkbox" />Aklan</li>-->
+
                     </ul>
                 </div>
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
-                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit" name="search">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="submit" name="search">Search</button>
                 </form>
             </div> 
         </div>
@@ -252,6 +212,7 @@ checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
     else
         checkList2.classList.add('visible');
 }
+
 </script>
 </html>
 
