@@ -91,17 +91,23 @@
                     <span class="anchor">Filter Region</span>
                     <select name="Region" id="region">
                         <option value=""></option>
-                        <option value="NCR">NCR</option>
-                        <option value="CAR">CAR</option>
-                        <option value="I">Region I</option>
-                        <option value="II">Region II</option>
-                        <option value="III">Region III</option>
-                        <option value="IV-A">Region IV-A</option>
-                        <option value="V">Region V</option>
-                        <option value="VI">Region VI</option>
-                        <option value="VII">Region VII</option>
-                        <option value="VIII">Region VIII</option>
-                        <option value="IX">Region IX</option>                      
+                        <option value="NCR ">NCR </option>
+                        <option value="CAR ">CAR </option>
+                        <option value="I ">Region I </option>
+                        <option value="II ">Region II </option>
+                        <option value="III ">Region III </option>
+                        <option value="IV-A ">Region IV-A </option>
+                        <option value="MIMAROPA ">MIMAROPA </option>
+                        <option value="V ">Region V </option>
+                        <option value="VI ">Region VI </option>
+                        <option value="VII ">Region VII </option>
+                        <option value="VIII ">Region VIII </option>
+                        <option value="IX ">Region IX </option> 
+                        <option value="X ">Region X </option> 
+                        <option value="XI ">Region XI </option> 
+                        <option value="XII ">Region XII </option> 
+                        <option value="XIII ">Region XIII </option> 
+                        <option value="BARMM ">BARMM </option> 
                     </select>
                 </div>
                 <div id="list2" class="dropdown-check-list" tabindex="100">
@@ -212,7 +218,14 @@ checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
     else
         checkList2.classList.add('visible');
 }
-
+function printFunction(){
+    var region_list = document.getElementById("region");
+    var region_filter = region_list.options[region_list.selectedIndex].text;
+    var province_list = document.getElementById("province_filt");
+    var province_filter = province_list.options[region_list.selectedIndex].text;
+    var stringquery = region_filter.concat(province_filter);
+    document.write(stringquery);
+}
 </script>
 </html>
 
