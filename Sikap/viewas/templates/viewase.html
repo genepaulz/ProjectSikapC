@@ -154,6 +154,7 @@
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
+                    <input type="hidden" name="result" value="">
                     <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="submit" name="search" id="search">Search</button>
                 </form>
             </div> 
@@ -193,7 +194,7 @@
             </form>
         </ul>
     </div>
-    <div hidden id="query_list"></div>
+    <div hidden id="query_list" name="query_list"></div>
     <div class="col-sm-3" id="table_body">
         
     
