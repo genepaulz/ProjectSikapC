@@ -154,7 +154,7 @@
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="submit" name="search" id="search">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()" style="background: #0496ff;" type="submit" name="search" id="search">Search</button>
                 </form>
             </div> 
         </div>
@@ -193,7 +193,6 @@
             </form>
         </ul>
     </div>
-    <div hidden id="query_list"></div>
     <div class="col-sm-3" id="table_body">
         
     
@@ -218,6 +217,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <div id="query_list"> </div>
 </body>
 <script>
 var checkList = document.getElementById('list1');
@@ -235,12 +235,12 @@ checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
     else
         checkList2.classList.add('visible');
 }
+
 function printFunction(){
     var region_list = document.getElementById("region");
     var region_filter = region_list.options[region_list.selectedIndex].value;
     var province_list = document.getElementById("province_filt");
     var province_filter = province_list.options[province_list.selectedIndex].value;
-    var stringquery = region_filter.concat(province_filter);
     var city_list = document.getElementById("city_filt");
     var city_filter = city_list.options[city_list.selectedIndex].value;
     var industry_list = document.getElementById("industry_filt");
@@ -249,10 +249,12 @@ function printFunction(){
                 province: province_filter,
                 city: city_filter,
                 industry: industry_filter};
-
-    var query = JSON.stringify(q);
-    document.getElementById("query_list").innerHTML = query;
     
+    
+    var query = JSON.stringify(q);
+    document.getElementById("query_list").innerHTML(query);
+    //document.write(query);
+
 }
 
 </script>
