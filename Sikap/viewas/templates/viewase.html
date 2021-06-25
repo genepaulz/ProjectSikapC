@@ -100,7 +100,7 @@
                         <option value="MIMAROPA ">MIMAROPA </option>
                         <option value="V ">Region V </option>
                         <option value="VI ">Region VI </option>
-                        <option value="VII ">Region VII </option>
+                        <option value="VII " selected>Region VII </option>
                         <option value="VIII ">Region VIII </option>
                         <option value="IX ">Region IX </option> 
                         <option value="X ">Region X </option> 
@@ -114,7 +114,7 @@
                     <span class="anchor">Filter Province</span>
                     <select name="Province" id="province_filt">
                         <!-- <option value=""></option> -->
-                        <option value="Cebu">Cebu</option>
+                        <option value="Cebu " selected>Cebu</option>
                         <option value="Bohol">Bohol</option>
                         <option value="Negros Oriental">Negros Oriental</option>
                         <option value="Negraos OCcidental">Negros Occidental</option>
@@ -127,24 +127,34 @@
                         <option value="Davao del Sur">Davao del Sur</option>                      
                     </select>
                 </div>
-                <div id="list2" class="dropdown-check-list" tabindex="100">
+                <div id="list3" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter City</span>
+                    <select name="City" id="city_filt">
+                        <!-- <option value=""></option> -->
+                        <option value="Cebu City" selected>Cebu City</option>
+                        <option value="Lapu-Lapu">Lapu-Lapu</option>
+                        <option value="Manduaue">Manduaue</option>                  
+                    </select>
+                </div>
+                <div id="list4" class="dropdown-check-list" tabindex="100">
+                    <span class="anchor">Filter Industry</span>
                     <!-- <ul class="items" name="province_filt">
                       <li><input type="radio" id="province_filt" value="Cebu"/>Cebu</li>
                       <li><input type="radio" id="province_filt" value="Lapu-Lapu"/>Lapu-Lapu</li>
                       <li><input type="radio" id="province_filt" value="Manduaue"/>Manduaue</li>
                     </ul> -->
-                    <select name="City" id="province_filt">
+                    <select name="Industry" id="industry_filt">
                         <!-- <option value=""></option> -->
-                        <option value="Cebu">Cebu</option>
-                        <option value="Lapu-Lapu">Lapu-Lapu</option>
-                        <option value="Manduaue">Manduaue</option>                  
+                        <option value="Education">Education</option>
+                        <option value="BPO">BPO</option>
+                        <option value="Techonology">Technology</option> 
+                        <option value="Hospitality Management">Hospitality Management</option>                 
                     </select>
                 </div>
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="submit" name="search">Search</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="submit" name="search" id="search">Search</button>
                 </form>
             </div> 
         </div>
@@ -183,7 +193,7 @@
             </form>
         </ul>
     </div>
-
+    <div hidden id="query_list"></div>
     <div class="col-sm-3" id="table_body">
         
     
@@ -227,12 +237,24 @@ checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
 }
 function printFunction(){
     var region_list = document.getElementById("region");
-    var region_filter = region_list.options[region_list.selectedIndex].text;
+    var region_filter = region_list.options[region_list.selectedIndex].value;
     var province_list = document.getElementById("province_filt");
-    var province_filter = province_list.options[region_list.selectedIndex].text;
+    var province_filter = province_list.options[province_list.selectedIndex].value;
     var stringquery = region_filter.concat(province_filter);
-    document.write(stringquery);
+    var city_list = document.getElementById("city_filt");
+    var city_filter = city_list.options[city_list.selectedIndex].value;
+    var industry_list = document.getElementById("industry_filt");
+    var industry_filter = industry_list.options[industry_list.selectedIndex].value;
+    const q = {region: region_filter,
+                province: province_filter,
+                city: city_filter,
+                industry: industry_filter};
+
+    var query = JSON.stringify(q);
+    document.getElementById("query_list").innerHTML = query;
+    
 }
+
 </script>
 </html>
 
