@@ -1,31 +1,13 @@
+<!DOCTYPE html>
 <html>
 <head>
 <title>Employer ViewAs Page</title>
 {% load static %}
 <link rel="stylesheet" href="{% static 'style1.css'%}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<style>
-.card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-}
-
-/* On mouse-over, add a deeper shadow */
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-/* Add some padding inside the card container */
-.container {
-  padding: 2px 16px;
-}
-
-</style>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- <script>
     //var str = document.getElementById("materialInput").value;
@@ -57,6 +39,24 @@
     
 </script> -->
 <style>
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
 #table_body{
     margin-top: 10%;
 }
@@ -154,7 +154,8 @@
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
                     {% csrf_token %}
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()" style="background: #0496ff;" type="submit" name="search" id="search">Search</button>
+                    <input type="hidden" name="result" value="" id="result">
+                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="button" name="search" id="search">Search</button>
                 </form>
             </div> 
         </div>
@@ -193,6 +194,7 @@
             </form>
         </ul>
     </div>
+    <div hidden id="query_list" name="query_list"></div>
     <div class="col-sm-3" id="table_body">
         
     
@@ -213,50 +215,35 @@
     </div>
     </div>
 </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <div id="query_list"> </div>
 </body>
-<script>
-var checkList = document.getElementById('list1');
-var checkList2 = document.getElementById('list2');
+    <script>
+        document.getElementById("query_list").innerHTML = "Paragraph changed!"; 
+        function printFunction(){
+            //document.getElementById("query_list").value("query");
+            var region_list = document.getElementById("region");
+            var region_filter = region_list.options[region_list.selectedIndex].value;
+            var province_list = document.getElementById("province_filt");
+            var province_filter = province_list.options[province_list.selectedIndex].value;
+            var city_list = document.getElementById("city_filt");
+            var city_filter = city_list.options[city_list.selectedIndex].value;
+            var industry_list = document.getElementById("industry_filt");
+            var industry_filter = industry_list.options[industry_list.selectedIndex].value;
+            const q = {region: region_filter,
+                        province: province_filter,
+                        city: city_filter,
+                        industry: industry_filter};
+            
+            
+            var query = JSON.stringify(q);
+            document.getElementById("result").innerHTML = query;
+            //document.write(query);
+        
+        }
+        
+        </script>
 
-checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
-    if (checkList.classList.contains('visible'))
-        checkList.classList.remove('visible');
-    else
-        checkList.classList.add('visible');
-}
-checkList2.getElementsByClassName('anchor')[0].onclick = function(evt) {
-    if (checkList2.classList.contains('visible'))
-        checkList2.classList.remove('visible');
-    else
-        checkList2.classList.add('visible');
-}
 
-function printFunction(){
-    var region_list = document.getElementById("region");
-    var region_filter = region_list.options[region_list.selectedIndex].value;
-    var province_list = document.getElementById("province_filt");
-    var province_filter = province_list.options[province_list.selectedIndex].value;
-    var city_list = document.getElementById("city_filt");
-    var city_filter = city_list.options[city_list.selectedIndex].value;
-    var industry_list = document.getElementById("industry_filt");
-    var industry_filter = industry_list.options[industry_list.selectedIndex].value;
-    const q = {region: region_filter,
-                province: province_filter,
-                city: city_filter,
-                industry: industry_filter};
-    
-    
-    var query = JSON.stringify(q);
-    document.getElementById("query_list").innerHTML(query);
-    //document.write(query);
-
-}
-
-</script>
 </html>
 

@@ -45,15 +45,17 @@ class ViewAsEView(View):
             del request.session['companyName']
             return redirect('landing:landing_view')
         elif('search' in request.POST):
-            filt = request.POST.get("materialInput")
+            # filt = request.POST.get("materialInput")
             
-            qs1 = Posts.objects.filter(industry__icontains=filt)
-            qs2 = Posts.objects.filter(region__icontains=filt)            
-            qs3 = Posts.objects.filter(province__icontains=filt)
-            qs4 = Posts.objects.filter(city__icontains=filt)
-            qs5 = Posts.objects.filter(position__icontains=filt)
+            # qs1 = Posts.objects.filter(industry__icontains=filt)
+            # qs2 = Posts.objects.filter(region__icontains=filt)            
+            # qs3 = Posts.objects.filter(province__icontains=filt)
+            # qs4 = Posts.objects.filter(city__icontains=filt)
+            # qs5 = Posts.objects.filter(position__icontains=filt)
+            filt = request.POST.get("query_list")
+            print(filt)
             
-            return render(request,'viewase.html',context)
+            return render(request,'viewase.html')
 
 def LiveSearch(request):
     template_name = "index.html"
