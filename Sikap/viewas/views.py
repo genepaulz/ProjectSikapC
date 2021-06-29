@@ -4,6 +4,7 @@ from django.views.generic import View,TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from posts.models import Posts
+from login.models import Employer
 from django.template import *
 from .import views
 from datetime import *
@@ -33,7 +34,14 @@ class ViewAsAView(View):
 
 class ViewAsEView(View):
     def get(self,request):
-        return render(request,'viewase.html')
+        stuff = request.session['search']
+        print(stuff)
+        if(stuff != "nothing"):
+            stuff2 = request.session['searchResults']
+            return HttpResponse(stuff2)
+        else:
+            request.session['searchResults']
+            return render(request,'viewase.html')
     
     def post(self,request):
         # if('search' in request.POST):
@@ -45,17 +53,20 @@ class ViewAsEView(View):
             del request.session['companyName']
             return redirect('landing:landing_view')
         elif('search' in request.POST):
-            # filt = request.POST.get("materialInput")
+            request.session['search'] = "nothing"
             
-            # qs1 = Posts.objects.filter(industry__icontains=filt)
-            # qs2 = Posts.objects.filter(region__icontains=filt)            
-            # qs3 = Posts.objects.filter(province__icontains=filt)
-            # qs4 = Posts.objects.filter(city__icontains=filt)
-            # qs5 = Posts.objects.filter(position__icontains=filt)
-            filt = request.POST.get("query_list")
-            print(filt)
+            region = request.POST.get("regionPOST")            
+            province = request.POST.get("provincePOST")
+            city = request.POST.get("cityPOST")
+            industry = request.POST.get("industryPOST")
+            filt = request.POST.get("inputPOST")
+            request.session['searchResults'] = Employer.search(region,province,city,industry,filt)
             
-            return render(request,'viewase.html')
+            print(request.session['search'])
+            print(request.session['searchResults'])
+            return redirect('viewas:viewase_view')
+            # return render(request,'viewase.html')
+            # return HttpResponse("NANI")
 
 def LiveSearch(request):
     template_name = "index.html"

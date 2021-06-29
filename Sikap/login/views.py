@@ -25,7 +25,9 @@ class LoginView(View):
             request.session['email'] = q.email   
             e = Employer.objects.get(employerUser_id = q.id)    
             request.session['companyName'] = e.companyName
-            return redirect('viewas:viewase_view')        
+            request.session['search'] = "nothing"
+            request.session['searchResults'] = "nothing"
+            return redirect('viewas:viewase_view')
         else:    
             #IMPLEMENT CONTEXT HERE
             request.session['email'] = q.email

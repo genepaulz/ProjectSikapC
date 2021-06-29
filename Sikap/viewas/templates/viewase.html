@@ -89,8 +89,7 @@
             <div class="nav-right">
                 <div id="list1" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter Region</span>
-                    <select name="Region" id="region">
-                        <option value="VII">VII</option>
+                    <select name="Region" id="region" onchange="printFunction()">
                         <option value="NCR ">NCR </option>
                         <option value="CAR ">CAR </option>
                         <option value="I ">Region I </option>
@@ -112,8 +111,7 @@
                 </div>
                 <div id="list2" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter Province</span>
-                    <select name="Province" id="province_filt">
-                        <!-- <option value=""></option> -->
+                    <select name="Province" id="province" onchange="printFunction()">
                         <option value="Cebu " selected>Cebu</option>
                         <option value="Bohol">Bohol</option>
                         <option value="Negros Oriental">Negros Oriental</option>
@@ -129,8 +127,7 @@
                 </div>
                 <div id="list3" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter City</span>
-                    <select name="City" id="city_filt">
-                        <!-- <option value=""></option> -->
+                    <select name="City" id="city" onchange="printFunction()">
                         <option value="Cebu City" selected>Cebu City</option>
                         <option value="Lapu-Lapu">Lapu-Lapu</option>
                         <option value="Manduaue">Manduaue</option>                  
@@ -143,7 +140,7 @@
                       <li><input type="radio" id="province_filt" value="Lapu-Lapu"/>Lapu-Lapu</li>
                       <li><input type="radio" id="province_filt" value="Manduaue"/>Manduaue</li>
                     </ul> -->
-                    <select name="Industry" id="industry_filt">
+                    <select name="Industry" id="industry" onchange="printFunction()">
                         <!-- <option value=""></option> -->
                         <option value="Education">Education</option>
                         <option value="BPO">BPO</option>
@@ -151,11 +148,15 @@
                         <option value="Hospitality Management">Hospitality Management</option>                 
                     </select>
                 </div>
-                <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
-                    {% csrf_token %}
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
-                    <input type="hidden" name="result" value="" id="result">
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="printFunction()   " style="background: #0496ff;" type="button" name="search" id="search">Search</button>
+                <form method="POST" class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
+                    {% csrf_token %}                    
+                    <input type="hidden" name="regionPOST" value="" id="regionPOST">
+                    <input type="hidden" name="provincePOST" value="" id="provincePOST">
+                    <input type="hidden" name="cityPOST" value="" id="cityPOST">
+                    <input type="hidden" name="industryPOST" value="" id="industryPOST">
+                    <input type="hidden" name="inputPOST" value="" id="inputPOST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" onkeyup="printFunction()"  aria-label="Search" id="materialInput" name="materialInput">                    
+                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit" name="search"  id="search">Search</button>
                 </form>
             </div> 
         </div>
@@ -194,7 +195,7 @@
             </form>
         </ul>
     </div>
-    <div hidden id="query_list" name="query_list"></div>
+    <div hidden id="querylist" name="querylist"></div>
     <div class="col-sm-3" id="table_body">
         
     
@@ -216,20 +217,21 @@
     </div>
 </div>
 
-    <div id="query_list"> </div>
+    
 </body>
     <script>
-        document.getElementById("query_list").innerHTML = "Paragraph changed!"; 
+        document.getElementById("querylist").innerHTML = "Paragraph changed!"; 
         function printFunction(){
             //document.getElementById("query_list").value("query");
             var region_list = document.getElementById("region");
             var region_filter = region_list.options[region_list.selectedIndex].value;
-            var province_list = document.getElementById("province_filt");
+            var province_list = document.getElementById("province");
             var province_filter = province_list.options[province_list.selectedIndex].value;
-            var city_list = document.getElementById("city_filt");
+            var city_list = document.getElementById("city");
             var city_filter = city_list.options[city_list.selectedIndex].value;
-            var industry_list = document.getElementById("industry_filt");
+            var industry_list = document.getElementById("industry");
             var industry_filter = industry_list.options[industry_list.selectedIndex].value;
+            var input_filter = document.getElementById("materialInput").value
             const q = {region: region_filter,
                         province: province_filter,
                         city: city_filter,
@@ -237,9 +239,13 @@
             
             
             var query = JSON.stringify(q);
-            document.getElementById("result").innerHTML = query;
-            //document.write(query);
-        
+            document.getElementById("querylist").innerHTML = query
+            document.getElementById("regionPOST").value = region_filter;
+            document.getElementById("provincePOST").value = province_filter;
+            document.getElementById("cityPOST").value = city_filter;
+            document.getElementById("industryPOST").value = industry_filter;
+            document.getElementById("inputPOST").value = input_filter;
+            // document.write(query);        
         }
         
         </script>
