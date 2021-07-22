@@ -1,3 +1,4 @@
+from django.db import reset_queries
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from django.views.generic import View,TemplateView
@@ -33,40 +34,42 @@ class ViewAsAView(View):
 
 
 class ViewAsEView(View):
-    def get(self,request):
-        stuff = request.session['search']
-        print(stuff)
-        if(stuff != "nothing"):
-            stuff2 = request.session['searchResults']
-            return HttpResponse(stuff2)
-        else:
-            request.session['searchResults']
+    def get(self,request):   
+            
+        if( request.session['hasSearched'] == 0 ):            
             return render(request,'viewase.html')
+            
+        else:
+            # qs = request.session['searchResults']
+            # try:
+            #     for obj in qs:
+            #         context = {
+            #             'result' : qs
+            #         }
+            #     request.session['hasSearched'] = 0            
+            #     return render(request,'viewase.html',context)
+            # except:
+            #     return render(request,'viewase.html')
+            return render(request,'viewase.html',request.session['searchResults'])
     
     def post(self,request):
-        # if('search' in request.POST):
-        #     string = request.POST.get("materialInput")
-        #     context = Employer.search(string)
-        #     return render(request,viewase.html,context)
         if('logout' in request.POST):
             del request.session['email']
             del request.session['companyName']
+            del request.session['hasSearched']
+            del request.session['searchResults']
             return redirect('landing:landing_view')
         elif('search' in request.POST):
-            request.session['search'] = "nothing"
-            
             region = request.POST.get("regionPOST")            
             province = request.POST.get("provincePOST")
             city = request.POST.get("cityPOST")
             industry = request.POST.get("industryPOST")
             filt = request.POST.get("inputPOST")
+            request.session['hasSearched'] = 1
             request.session['searchResults'] = Employer.search(region,province,city,industry,filt)
-            
-            print(request.session['search'])
-            print(request.session['searchResults'])
             return redirect('viewas:viewase_view')
             # return render(request,'viewase.html')
-            # return HttpResponse("NANI")
+            # return HttpResponse(request.session['searchResults'])
 
 def LiveSearch(request):
     template_name = "index.html"

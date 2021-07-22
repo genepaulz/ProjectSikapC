@@ -2,6 +2,7 @@ from django.db import models
 from rating.models import Rating
 from datetime import *
 from posts.forms import Posts
+from django.http import JsonResponse
 from passlib.hash import pbkdf2_sha256
 # Create your models here.
 
@@ -83,6 +84,7 @@ class User(models.Model):
         form3.save()
 
     def login(email,password):
+        flag = -1
         q = User.objects.get(email=email)
         if(q.verify_password(password)):
             if(User.viewas(q.user_type)==0):
@@ -154,6 +156,18 @@ class Employer(models.Model):
         print(city)
         print(industry)
         print(filt)
-        d = "tae"
+        image = "/static/img_avatar.png"
+        d = ""
+        mat = Posts.objects.filter(region=region,province=province,city=city,industry=industry,position__icontains=filt)
+        for objects in mat:
+            # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+            if(objects.isAgeViewable):
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
+            else:
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
+        context = {
+            'result' : d
+        }
+        print(d)
         # d = Posts.objects.filter(region__icontains=region,province__icontains=province,city__icontains=city,industry__icontains=industry,position__icontains=filt)
-        return d
+        return context

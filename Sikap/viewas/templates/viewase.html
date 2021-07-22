@@ -128,7 +128,7 @@
                 <div id="list3" class="dropdown-check-list" tabindex="100">
                     <span class="anchor">Filter City</span>
                     <select name="City" id="city" onchange="printFunction()">
-                        <option value="Cebu City" selected>Cebu City</option>
+                        <option value="Cebu" selected>Cebu City</option>
                         <option value="Lapu-Lapu">Lapu-Lapu</option>
                         <option value="Manduaue">Manduaue</option>                  
                     </select>
@@ -144,7 +144,7 @@
                         <!-- <option value=""></option> -->
                         <option value="Education">Education</option>
                         <option value="BPO">BPO</option>
-                        <option value="Techonology">Technology</option> 
+                        <option value="Technology">Technology</option> 
                         <option value="Hospitality Management">Hospitality Management</option>                 
                     </select>
                 </div>
@@ -198,6 +198,37 @@
     <div hidden id="querylist" name="querylist"></div>
     <div class="col-sm-3" id="table_body">
         
+        {% for res in result %}
+            <!-- {% if res.isAgeVieable %}
+            <div class="card">
+                <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>{{res.lastname}}, {{res.firstname}}</b></h4>
+                    <p>Position: {{res.position}}</p>
+                    <p>Years of Experience: {{res.yearsOfExperience}}</p>
+                    <p>Industry: {{res.industry}}</p>
+                    <p>Region: {{res.region}}</p>
+                    <p>Province: {{res.province}}</p>
+                    <p>City: {{res.city}}</p>
+                    <p>Age: {{res.age}}</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="card">
+                <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
+                    <div class="container">
+                    <h4><b>{{res.lastname}}, {{res.firstname}}</b></h4>
+                    <p>Position: {{res.position}}</p>
+                    <p>Years of Experience: {{res.yearsOfExperience}}</p>
+                    <p>Industry: {{res.industry}}</p>
+                    <p>Region: {{res.region}}</p>
+                    <p>Province: {{res.province}}</p>
+                    <p>City: {{res.city}}</p>                      
+                </div>
+            </div>
+            {% endif %} -->
+            {{res}}
+        {% endfor %}
     
         <!-- <div class="card">
             <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
@@ -247,6 +278,7 @@
             document.getElementById("inputPOST").value = input_filter;
             // document.write(query);        
         }
+        
         
         </script>
 
