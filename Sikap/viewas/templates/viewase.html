@@ -130,7 +130,7 @@
                     <select name="City" id="city" onchange="printFunction()">
                         <option value="Cebu" selected>Cebu City</option>
                         <option value="Lapu-Lapu">Lapu-Lapu</option>
-                        <option value="Manduaue">Manduaue</option>                  
+                        <option value="Mandaue">Mandaue</option>                  
                     </select>
                 </div>
                 <div id="list4" class="dropdown-check-list" tabindex="100">
@@ -198,8 +198,10 @@
     <div hidden id="querylist" name="querylist"></div>
     <div class="col-sm-3" id="table_body">
         
-        {% for res in result %}
-            <!-- {% if res.isAgeVieable %}
+        {% if request.session.searchResults != 'nothing'%}
+        {{request.session.searchResults.result | safe}}        
+        {% endif %}
+        <!-- {% if res.isAgeVieable %}
             <div class="card">
                 <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
                 <div class="container">
@@ -227,9 +229,7 @@
                 </div>
             </div>
             {% endif %} -->
-            {{res}}
-        {% endfor %}
-    
+            <!-- {{ res | safe}} -->
         <!-- <div class="card">
             <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
             <div class="container">

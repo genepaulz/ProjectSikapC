@@ -34,23 +34,10 @@ class ViewAsAView(View):
 
 
 class ViewAsEView(View):
-    def get(self,request):   
+    def get(self,request):        
+        return render(request,'viewase.html')
+        
             
-        if( request.session['hasSearched'] == 0 ):            
-            return render(request,'viewase.html')
-            
-        else:
-            # qs = request.session['searchResults']
-            # try:
-            #     for obj in qs:
-            #         context = {
-            #             'result' : qs
-            #         }
-            #     request.session['hasSearched'] = 0            
-            #     return render(request,'viewase.html',context)
-            # except:
-            #     return render(request,'viewase.html')
-            return render(request,'viewase.html',request.session['searchResults'])
     
     def post(self,request):
         if('logout' in request.POST):
