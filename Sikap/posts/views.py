@@ -25,9 +25,8 @@ class PostsView(View):
         city = request.POST.get("city")
         age = request.POST.get("age")
         isAgeViewable = request.POST.get("isAgeViewable")
-        email = request.session['email'],
-        # firstname = request.session['firstname'],
-        # lastname = request.session['lastname']
+        email = request.session['email']
+        
         if isAgeViewable == 'on':
             isAgeViewable = 1
         else:

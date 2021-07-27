@@ -24,5 +24,4 @@ urlpatterns = [
     path('registration/',include('registration.urls')),
     path('view/',include('viewas.urls')),
     path('posts/',include('posts.urls')), 
-    path('view/get/ajax/friend',views.LiveSearch , name="LiveSearch")
 ]

@@ -9,37 +9,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- <script>
-    //var str = document.getElementById("materialInput").value;
-    //console.log(str);
-    $(document).ready(function(){
-        $("input").keypress(function(){
-            setTimeout(function(){ $.ajax({                
-            url: "get/ajax/friend",
-            data: {"d": $("#materialInput").val()},
-            dataType: "json",
-            beforeSend: function(){
-                if(($("#materialInput").val()).length <= 1){
-                    // $("#table_body").html("hello");
-                    return false;
-                }
-            return true;
-            },
-            success: function(result){                    
-                $("#table_body").html(result["d"]);                
-            }
-        }); 
-    }, 1500);
-        //$("#table_body").remove()                        
-                                   
-    });
-    
-    });
-
-    
-</script> -->
 <style>
-
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -197,53 +167,9 @@
     </div>
     <div hidden id="querylist" name="querylist"></div>
     <div class="col-sm-3" id="table_body">
-        
         {% if request.session.searchResults != 'nothing'%}
         {{request.session.searchResults.result | safe}}        
         {% endif %}
-        <!-- {% if res.isAgeVieable %}
-            <div class="card">
-                <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
-                <div class="container">
-                    <h4><b>{{res.lastname}}, {{res.firstname}}</b></h4>
-                    <p>Position: {{res.position}}</p>
-                    <p>Years of Experience: {{res.yearsOfExperience}}</p>
-                    <p>Industry: {{res.industry}}</p>
-                    <p>Region: {{res.region}}</p>
-                    <p>Province: {{res.province}}</p>
-                    <p>City: {{res.city}}</p>
-                    <p>Age: {{res.age}}</p>
-                </div>
-            </div>
-            {% else %}
-            <div class="card">
-                <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
-                    <div class="container">
-                    <h4><b>{{res.lastname}}, {{res.firstname}}</b></h4>
-                    <p>Position: {{res.position}}</p>
-                    <p>Years of Experience: {{res.yearsOfExperience}}</p>
-                    <p>Industry: {{res.industry}}</p>
-                    <p>Region: {{res.region}}</p>
-                    <p>Province: {{res.province}}</p>
-                    <p>City: {{res.city}}</p>                      
-                </div>
-            </div>
-            {% endif %} -->
-            <!-- {{ res | safe}} -->
-        <!-- <div class="card">
-            <img src="{% static 'img_avatar.png' %}" alt="Avatar" style="width:100%">
-            <div class="container">
-              <h4><b>John Doe</b></h4>
-              <p>Position</p>
-              <p>Years of Experience</p>
-              <p>Industry</p>
-              <p>Region</p>
-              <p>Province</p>
-              <p>City</p>
-              <p>Age</p>
-            </div>
-          </div> -->
-        
     </div>
     </div>
 </div>
@@ -253,7 +179,6 @@
     <script>
         document.getElementById("querylist").innerHTML = "Paragraph changed!"; 
         function printFunction(){
-            //document.getElementById("query_list").value("query");
             var region_list = document.getElementById("region");
             var region_filter = region_list.options[region_list.selectedIndex].value;
             var province_list = document.getElementById("province");
@@ -276,12 +201,7 @@
             document.getElementById("cityPOST").value = city_filter;
             document.getElementById("industryPOST").value = industry_filter;
             document.getElementById("inputPOST").value = input_filter;
-            // document.write(query);        
         }
-        
-        
         </script>
-
-
 </html>
 

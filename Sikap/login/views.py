@@ -21,7 +21,6 @@ class LoginView(View):
         q = User.objects.get(email=email)    
         
         if(User.login(email,password) == 1):
-            #IMPLEMENT CONTEXT HERE
             request.session['email'] = q.email   
             e = Employer.objects.get(employerUser_id = q.id)    
             request.session['companyName'] = e.companyName
@@ -29,19 +28,15 @@ class LoginView(View):
             request.session['searchResults'] = "nothing"
             return redirect('viewas:viewase_view')
         else:    
-            #IMPLEMENT CONTEXT HERE
+            a = Applicant.objects.get(applicantUser_id = q.id)
             request.session['email'] = q.email
             request.session['firstname'] = q.firstname
             request.session['lastname'] = q.lastname
             request.session['industry'] = q.industry
             request.session['region'] = q.region
             request.session['province'] = q.province
-            request.session['city'] = q.city
-            a = Applicant.objects.get(applicantUser_id = q.id)
+            request.session['city'] = q.city            
             request.session['age'] = a.age
             return redirect('viewas:viewasa_view')
-            # return render(request,'applicant.html',context)        
-        #else:
-            #return HttpResponse("User does not EXIST!")
 
 
