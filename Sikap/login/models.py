@@ -91,6 +91,8 @@ class User(models.Model):
                 flag = 0
             else:
                 flag = 1
+        # else:
+        #     print("Wrong Username or password")   
         
         return flag
 
@@ -130,6 +132,8 @@ class Applicant(models.Model):
             isDeleted = 0
         )
         form.save()
+
+    
 
     class Meta:
         db_table = "Applicant"

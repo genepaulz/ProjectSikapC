@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Applicant Dashboard</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -257,6 +257,7 @@ nav{
             </div>
             <div class="col-md-6">
                 <div class="profile-content">
+                  <h1>ID: {{request.session.id}}</h1>
                   <h1> NAME: {{request.session.firstname}} {{request.session.lastname}} &nbsp&nbsp AGE: {{request.session.age}}</h1>
                   <br />
                   <p>INDUSTRY: {{request.session.industry}}  &nbsp&nbsp REGION: {{request.session.region}} </p>

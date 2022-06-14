@@ -27,3 +27,6 @@ class Posts(models.Model):
 
     class Meta:
         db_table = "Posts"
+    
+    # def viewPost(email=email):
+        

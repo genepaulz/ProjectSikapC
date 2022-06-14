@@ -8,7 +8,6 @@ from .import views
 from datetime import *
 
 
-
 # Create your views here.
 
 class LoginView(View):
@@ -27,8 +26,9 @@ class LoginView(View):
             request.session['hasSearched'] = 0
             request.session['searchResults'] = "nothing"
             return redirect('viewas:viewase_view')
-        else:    
+        elif(User.login(email,password) == 0):    
             a = Applicant.objects.get(applicantUser_id = q.id)
+            request.session['id'] = a.id
             request.session['email'] = q.email
             request.session['firstname'] = q.firstname
             request.session['lastname'] = q.lastname
