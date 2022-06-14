@@ -6,7 +6,8 @@ To run this program
 <br>
 then do the followingg
 <br>
-/ProjectSikap
+/ProjectSikap (in this folder)
+<br>
 #pipenv intstall (if not yet installed)
 <br>
 #pipenv shell
