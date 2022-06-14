@@ -20,13 +20,8 @@ class Posts(models.Model):
     isDeleted = models.IntegerField()
     applicantID = models.ForeignKey("login.Applicant", on_delete=models.CASCADE,blank=True,null=True)
 
-    # def isvalid():
-    #     return 1
-    # def ishired():
-    #     return 1
-
     class Meta:
         db_table = "Posts"
     
-    # def viewPost(email=email):
+ 
         

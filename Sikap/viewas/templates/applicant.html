@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 </head>
 <style>
     body {
@@ -55,7 +56,7 @@ nav{
 /* Profile sidebar */
 .profile-sidebar {
   margin: 20px;
-  padding: 20px 0 10px 0;
+  padding: 40px 0 400px 0;
   background: #fff;
 }
 
@@ -151,7 +152,8 @@ nav{
   margin-top: 3.8%;
   background: #fff;
   min-height: 450px;
-  height: 600px;
+  width: 1000px;
+  height: 1000px;
 }
 .profile-content h1 {
   text-transform: uppercase;
@@ -165,6 +167,7 @@ nav{
   font-size: 16px;
   font-weight: 600;
 }
+
 </style>
 <body>
 {% load static %}
@@ -252,10 +255,10 @@ nav{
                         </ul>
                     </div>
                     <!-- END MENU -->
-
+                       <!-- PROFILE OF APPLICANT -->
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <div class="profile-content">
                   <h1>ID: {{request.session.id}}</h1>
                   <h1> NAME: {{request.session.firstname}} {{request.session.lastname}} &nbsp&nbsp AGE: {{request.session.age}}</h1>
@@ -263,8 +266,47 @@ nav{
                   <p>INDUSTRY: {{request.session.industry}}  &nbsp&nbsp REGION: {{request.session.region}} </p>
                   <br />
                   <p>PROVINCE: {{request.session.province}}  &nbsp&nbsp CITY: {{request.session.city}} </p>
+                   <!-- DASHBOARD APPLICANT FOR POST -->
+                   <div class="container-xl">
+                    <div class="table-responsive">
+                      <div class="table-wrapper">
+                        <div class="table-title">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <h2>Manage <b>Posts</b>(sample)</h2>
+                            </div>
+                            <div class="col-sm-6">		
+                            </div>
+                          </div>
+                        </div>
+                        <table class="table table-striped table-hover">
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Address</th>
+                              <th>Phone</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Thomas Hardy</td>
+                              <td>thomashardy@mail.com</td>
+                              <td>89 Chiaroscuro Rd, Portland, USA</td>
+                              <td>(171) 555-2222</td>
+                              <td>
+                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>        
                 </div>
-            </div>
+                 <!-- END OF DASHBOARD APPLICANT FOR POST -->
+              </div>
             <div class="col-md-3" id="info">
             </div>
         </div>

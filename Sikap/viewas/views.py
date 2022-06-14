@@ -35,7 +35,7 @@ class ViewAsAView(View):
 
 class ViewAsEView(View):
     def get(self,request):        
-        return render(request,'viewase.html')
+        return render(request,'employer.html')
         
             
     

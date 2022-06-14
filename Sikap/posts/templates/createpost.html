@@ -72,6 +72,10 @@ body{
     width:100%;
 }
 
+.input option{
+    background: rgba(0,0,0,0.8);
+}
+
 .input-fields .checkbox{
     position: relative;
     width: 80px;
@@ -135,10 +139,55 @@ body{
                     <input type="hidden" value="{{profile.email}}" name="email">
                     <input type="number" class="input" name="yearsOfExperience" placeholder="Years of Experience">
                     <input type="text" class="input" name="position" placeholder="Position / Job Title">
-                    <input type="text" class="input" name="industry" placeholder="Industry" value="{{request.session.industry}}">
-                    <input type="text" class="input" name="region" placeholder="Region" value="{{request.session.region}}">
-                    <input type="text" class="input" name="province" placeholder="Province" value="{{request.session.province}}">
-                    <input type="text" class="input" name="city" placeholder="City" value="{{request.session.city}}">
+                        <div class = "select-box">
+                            <select class = "input" name="industry" placeholder="Industry" value="{{request.session.industry}}">
+                                <option disabled selected>Industry</option>
+                                <option value = "Education">Education</option>
+                                <option value = "Technology">Technology</option>
+                                <option value = "Hospitality Management">Hospitality Management</option>
+                                <option value = "BPO">BPO</option>   
+                            </select>
+                            <select class = "input" name="region" placeholder="Region" value="{{request.session.region}}">
+                                <option disabled selected>Region</option>
+                                <option value = "NCR">NCR</option>
+                                <option value = "CAR">CAR</option>
+                                <option value = "Region I">Region I</option>
+                                <option value = "Region II">Region II</option>
+                                <option value = "Region III">Region III</option>
+                                <option value = "Region IV-A">Region IV-A</option>
+                                <option value = "MIMAROPA">MIMAROPA</option>
+                                <option value = "Region V">Region V</option>
+                                <option value = "Region VI">Region VI</option>
+                                <option value = "Region VII">Region VII</option>
+                                <option value = "Region VIII">Region VIII</option>
+                                <option value = "Region IX">Region IX</option>
+                                <option value = "Region X">Region X</option>
+                                <option value = "Region XI">Region XI</option>
+                                <option value = "Region XII">Region XII</option>
+                                <option value = "Region XIII">Region XIII</option>
+                                <option value = "BARMM">BARMM</option>
+                            </select>
+                            <select class="input" name="province" placeholder="Province" value="{{request.session.province}}">
+                                <option disabled selected>Province</option>
+                                <option value = "Cebu">Cebu</option>
+                                <option value = "Bohol">Bohol</option>
+                                <option value = "Negros Oriental">Negros Oriental</option>
+                                <option value = "Negros Occidental">Negros Occidental</option>
+                                <option value = "Siquijor">Siquijor</option>
+                                <option value = "Leyte">Leyte</option>
+                                <option value = "Samar">Samar</option>
+                                <option value = "Aklan">Aklan</option>
+                                <option value = "Surigao Del Sur">Surigao Del Sur</option>
+                                <option value = "Benguet">Benguet</option>
+                                <option value = "Davao Del Sur">Davao Del Sur</option>
+                            </select>
+                            <select class="input" name="city" placeholder="City" value="{{request.session.city}}">
+                                <option disabled selected>City</option>
+                                <option value="Cebu City">Cebu City</option>
+                                <option value="Lapu Lapu">Lapu Lapu</option>
+                                <option value="Mandaue">Mandaue</option>
+                            </select>
+                        </div>
                     <input type="number" class="input" name="age" placeholder="Age" value="{{request.session.age}}">
                     <br>
                     <br>
