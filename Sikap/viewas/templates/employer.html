@@ -149,10 +149,12 @@
                 <center>
                     <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
                 </center>
-                <header> {{request.session.companyName}} </header>
+                <header>{{request.session.company}} </header>
                 <ul class ="sidebar-nav">
+                    <li>Matches: {{request.session.matches}}</li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Search</a></li>
+                    <input>
                     <form action="" method="post">
                         {% csrf_token %}
                         <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
@@ -161,8 +163,11 @@
             </div>
         </div>
         
-        <form method = "POST">    
+        <form method = "POST">   
+            {% csrf_token %} 
         <div hidden id="querylist" name="querylist"></div>
+        <input type="hidden" name='company' value="{{request.session.company}}">
+        <input type="hidden" name='employer' value="{{request.session.id}}">
             <div class="col-sm-3" id="table_body">
                 {% if request.session.searchResults != 'nothing'%}   
                 {{request.session.searchResults.result | safe}}   

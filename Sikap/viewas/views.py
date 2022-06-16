@@ -37,14 +37,13 @@ class ViewAsEView(View):
     def get(self,request):        
         return render(request,'employer.html')
         
-            
-    
     def post(self,request):
         if('logout' in request.POST):
             del request.session['email']
-            del request.session['companyName']
+            del request.session['company']
             del request.session['hasSearched']
             del request.session['searchResults']
+            #del request.session['matches']
             return redirect('landing:landing_view')
         elif('search' in request.POST):
             region = request.POST.get("regionPOST")            
@@ -54,5 +53,15 @@ class ViewAsEView(View):
             filt = request.POST.get("inputPOST")
             request.session['hasSearched'] = 1
             request.session['searchResults'] = Employer.search(region,province,city,industry,filt)
-        
+
+            return redirect('viewas:viewase_view')
+        elif('match' in request.POST):
+            company = request.POST.get("company")
+            employer = request.POST.get("employer")
+            post = request.POST.get("postID")
+            applicant = request.POST.get("appID")
+            Employer.match(employer,post,applicant,company)
+            query = Employer.objects.get(employerUser_id = employer)
+            request.session['matches'] = query.matches
+            
             return redirect('viewas:viewase_view')

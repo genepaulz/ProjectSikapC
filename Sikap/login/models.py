@@ -4,7 +4,9 @@ from datetime import *
 from posts.forms import Posts
 from django.http import JsonResponse
 from passlib.hash import pbkdf2_sha256
-# from match.forms import Match
+from match.forms import Match
+from django.db.models import F
+
 # from django.db.models import F
 
 
@@ -117,9 +119,9 @@ class Applicant(models.Model):
     ratings = models.ForeignKey(Rating, on_delete=models.CASCADE)
 
     def createpost(email,firstname,lastname,region,province,city,age,industry,yearsOfExperience,position,isAgeViewable):
-        a = Applicant.objects.get(applicantUser = User.objects.get(email=email))
+        applicant = Applicant.objects.get(applicantUser = User.objects.get(email=email))
         form = Posts(
-            applicantID = a,
+            applicantID = applicant,
             email = email,
             firstname = firstname,
             lastname = lastname,
@@ -155,10 +157,11 @@ class Employer(models.Model):
         mat = Posts.objects.filter(region=region,province=province,city=city,industry=industry,position__icontains=filt)
         for objects in mat:
             
-            if(objects.isAgeViewable):
-                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h3>ID: <input class='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><h5>A-ID: <input name='appID' type='hidden' value="+str(objects.applicantID_id)+">"+str(objects.applicantID_id)+"</h5><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div><center><button type='submit' class='btn btn-info btn-lg btn-block p-3' >Match</button></div><br> "
-            else:
-                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>ID: </b>"+str(objects.id)+"</h4><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><button type='submit' class='btn btn-info btn-lg btn-block p-3' >Match</button></div><br>"
+          if(objects.isAgeViewable):
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h3>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><h5>A-ID: <input name='appID' type='hidden' value="+str(objects.applicantID_id)+">"+str(objects.applicantID_id)+"</h5><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br> "
+        else:
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><h5>A-ID: <input name='appID' type='hidden' value="+str(objects.applicantID_id)+">"+str(objects.applicantID_id)+"</h5><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br>"
+        
         context = {
             'result' : d
       
@@ -166,19 +169,22 @@ class Employer(models.Model):
         return context
 
  
-    # def match(empID,postID,appID,user,company):
-    #     form = Match(
-    #         employerID = empID,
-    #         postsID = postID,
-    #         applicantID = appID
-    #     )
-    #     form.save()
-    #     getUser = User.objects.get(employerUser = user)
-    #     form2 = Employer(
-    #         employerUser = getUser,
-    #         companyName = company,
-    #         matches = form 
-
-    #     )
-    #     form2.save()
+    def match(empID,postID,appID,company):
+        employer = Employer.objects.get(employerUser_id = User.objects.get(id=empID))
+        post = Posts.objects.get(id=postID)
+        applicant = Applicant.objects.get(id = appID)
+        form = Match(
+            employerID = employer,
+            postsID = post,
+            applicantID = applicant
+        )
+        form.save()
+        match = Employer.objects.filter(employerUser_id = employer).update(matches=F('matches')+1)
+        form2 = Employer(
+            employerUser_id = employer,
+            companyName = company,
+            matches = match
+        )
+        form2.save()
+        
         

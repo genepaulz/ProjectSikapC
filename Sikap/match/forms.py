@@ -1,12 +1,10 @@
 from django import forms
-#from match.models import Match
+from .models import Match
 
 class matchForm(forms.ModelForm):
 
     class Meta:
         model = Match
         fields = [
-            'employerID',
-            'postsID',
-            'applicantID',
+         
         ]
