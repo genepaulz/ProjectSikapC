@@ -4,6 +4,10 @@ from datetime import *
 from posts.forms import Posts
 from django.http import JsonResponse
 from passlib.hash import pbkdf2_sha256
+# from match.forms import Match
+# from django.db.models import F
+
+
 # Create your models here.
 
 
@@ -152,11 +156,29 @@ class Employer(models.Model):
         for objects in mat:
             
             if(objects.isAgeViewable):
-                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div><center><button type='submit' class='btn btn-info btn-lg btn-block p-3' >Match</button></div><br> "
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h3>ID: <input class='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><h5>A-ID: <input name='appID' type='hidden' value="+str(objects.applicantID_id)+">"+str(objects.applicantID_id)+"</h5><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div><center><button type='submit' class='btn btn-info btn-lg btn-block p-3' >Match</button></div><br> "
             else:
-                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><button type='submit' class='btn btn-info btn-lg btn-block p-3' >Match</button></div><br>"
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>ID: </b>"+str(objects.id)+"</h4><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><button type='submit' class='btn btn-info btn-lg btn-block p-3' >Match</button></div><br>"
         context = {
             'result' : d
       
         }        
         return context
+
+ 
+    # def match(empID,postID,appID,user,company):
+    #     form = Match(
+    #         employerID = empID,
+    #         postsID = postID,
+    #         applicantID = appID
+    #     )
+    #     form.save()
+    #     getUser = User.objects.get(employerUser = user)
+    #     form2 = Employer(
+    #         employerUser = getUser,
+    #         companyName = company,
+    #         matches = form 
+
+    #     )
+    #     form2.save()
+        

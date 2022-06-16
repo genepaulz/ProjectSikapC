@@ -21,7 +21,8 @@ class LoginView(View):
         
         if(User.login(email,password) == 1):
             request.session['email'] = q.email   
-            e = Employer.objects.get(employerUser_id = q.id)    
+            e = Employer.objects.get(employerUser_id = q.id)
+            request.session['id'] = e.employerUser_id    
             request.session['companyName'] = e.companyName
             request.session['hasSearched'] = 0
             request.session['searchResults'] = "nothing"
