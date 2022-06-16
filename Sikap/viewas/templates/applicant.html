@@ -1,181 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Applicant Dashboard</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-</head>
-<style>
-    body {
-  background: #F1F3FA;
-  height: 1000px;
-}
-
-/* Profile container */
-.profile {
-  margin: 20px 0;
-}
-
-#wrapper{
-    position: fixed;
-}
-#panel{
-    float: right;
-    position:fixed;
-}
-
-#info{
-    position: fixed;
-}
-nav{
-    color: black;
-}
-
-.container{
-    padding-top: 3%;
-}
-
-.navbar{
-    width: 100%;
-    position: fixed;
-    background: whitesmoke;
-    opacity: 1;
-}
-.nav-right {
-    float: right;
-}
-
-.row-profile {
-    margin-top: 20px;
-}
-/* Profile sidebar */
-.profile-sidebar {
-  margin: 20px;
-  padding: 40px 0 400px 0;
-  background: #fff;
-}
-
-.profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
-
-.profile-usertitle {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.profile-usertitle-name {
-  color: #5a7391;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 7px;
-}
-
-.profile-usertitle-job {
-  text-transform: uppercase;
-  color: #5b9bd1;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-.profile-userbuttons {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 6px 15px;
-  margin-right: 5px;
-}
-
-.profile-userbuttons .btn:last-child {
-  margin-right: 0px;
-}
-
-.profile-usermenu {
-  margin-top: 30px;
-}
-
-.profile-usermenu ul li {
-  border-bottom: 1px solid #f0f4f7;
-}
-
-.profile-usermenu ul li:last-child {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li a {
-  color: #93a3b5;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.profile-usermenu ul li a i {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
-  color: #5b9bd1;
-}
-
-.profile-usermenu ul li.active {
-  border-bottom: none;
-}
-
-.profile-usermenu ul li.active a {
-  color: #5b9bd1;
-  background-color: #f6f9fb;
-  border-left: 2px solid #5b9bd1;
-  margin-left: -2px;
-}
-
-/* Profile Content */
-.profile-content {
-  padding: 20px;
-  margin-top: 3.8%;
-  background: #fff;
-  min-height: 450px;
-  width: 1000px;
-  height: 1000px;
-}
-.profile-content h1 {
-  text-transform: uppercase;
-  color: #5a7391;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.profile-content p {
-  color: #5b9bd1;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-</style>
+<html>
+    <head>
+        <title>Applicant Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+        body{
+            background-color: lightblue;
+        }
+        nav{
+            color: black;
+        }
+        .container{
+            padding-top: 3%;
+        }
+        .navbar{
+            width: 100%;
+            position: fixed;
+            background: whitesmoke;
+            opacity: 1;
+        }
+        .nav-right{
+            float: right;
+        }
+        .profile-container{
+            padding: 20px 15%;
+            color: #626262;
+        }
+        .spacing{
+            width:100%;
+            height: 10%;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+        .pd-img{
+            width: 100px;
+            margin-right: 20px;
+            border-radius: 6px;
+        }
+       .profile-details{
+            background: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .pd-row{
+            display: flex;
+            align-items: flex-start;
+        }
+        .pd-row div h3{
+            font-size: 25px;
+            font-weight: 600;
+        }
+        .pd-row div p{
+            font-size: 13px;
+        }
+        .pd-right button{
+            background: #1876f2;
+            border: 0;
+            outline: 0;
+            padding: 6px 10px;
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            border-radius: 3px;
+            margin-top: 30px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .pd-right button:first-child{
+            background: #e4e6eb;
+            color: #000;
+        }
+        .profile-info{
+            display:flex;
+            align-self: flex-start;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .info-col{
+            flex-basis: 33%;
+        }
+        .post-col{
+            flex-basis: 65%;
+            margin-left: 50px;
+        }
+        .profile-intro{
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .profile-intro h3{
+            font-weight: 600;
+        }
+        .intro-text{
+            text-align: left;
+            margin: 10px 0;
+            font-size: 15px;
+        }
+        .profile-intro hr{
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 24px 0;
+        }
+        .title-box{
+            display: flex; 
+            align-items: center;
+            justify-content: space-between;
+        }
+        .match-box{
+            margin-top: 15px;
+        }
+        .post-container{
+            width: 100%;
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            color: #626262;
+        }
+        .post-text{
+            color: #9a9a9a;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+        .post-text span{
+            color: #626262;
+            font-weight: 500;
+        }
+        .post-text a{
+            color: #1876f2;
+            text-decoration: none;
+        }
+        .footer{
+            text-align: center;
+            color: #9a9a9a;
+            padding: 10px 0 20px;
+            font-size: 13px;
+        }
+        </style>
+    </head>
 <body>
 {% load static %}
     <nav class="navbar sticky-top navbar-light bg-dark">
         <div class="container-fluid">
-          <div class="navbar-header">
+        <div class="navbar-header">
             <a class="navbar-brand" href="#">Sikap</a>
-          </div>
+        </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li class="text-secondary"><a href="#">Find Employers</a></li>
@@ -190,128 +166,53 @@ nav{
             </div>
         </div>
     </nav>
-    <div class="container">
-        <div class="row profile">
-            <div class="col-md-3" >
-                <div class="profile-sidebar" id="wrapper">
 
-
-                    <!-- SIDEBAR USERPIC -->
-                    <div class="profile-userpic">
-                        <img src="{% static 'avatar.jpg'%}" class="img-responsive" alt="">
+    <div class="profile-container">
+        <div class ="spacing"></div>
+        <div class ="profile-details">
+            <div class ="pd-left">
+                <div class="pd-row">
+                    <img src="{% static 'avatar.jpg'%}" class="pd-img">
+                    <div>
+                        <h3>{{request.session.firstname}}</h3>
+                        <p>{{request.session.industry}}</p>
                     </div>
-                    <!-- END SIDEBAR USERPIC -->
-                    <!-- SIDEBAR USER TITLE -->
-
-                    <div class="profile-usertitle">
-
-                        <div class="profile-usertitle-name">
-                        {{request.session.firstname}}
-                        </div>
-                        <div class="profile-usertitle-job">
-                        {{request.session.industry}}
-                        </div>
-
-
-                    </div>
-                    <!-- END SIDEBAR USER TITLE -->
-                    <!-- SIDEBAR BUTTONS -->
-                    <div class="profile-userbuttons">
-
-
-                        <form action="" method="POST">
-                          {% csrf_token %}
-                          <input type="hidden" value="{{profile.email}}" name="email">
-                          <button type="button" class="btn btn-success btn-sm">Find</button>
-                          <button type="submit" class="btn btn-danger btn-sm" name="post">CREATE POST</button>
-                          <button type="submit" class="btn btn-danger btn-sm" name="logout">Logout</button>
-
-                        </form>
-                    </div>
-                    <!-- END SIDEBAR BUTTONS -->
-                    <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
-                        <ul class="nav">
-                            <li class="active">
-                                <a href="#">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Overview </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Account Settings </a>
-                            </li>
-                            <li>
-                                <a href="#" target="_blank">
-                                <i class="glyphicon glyphicon-ok"></i>
-                                Tasks </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i>
-                                Help </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END MENU -->
-                       <!-- PROFILE OF APPLICANT -->
                 </div>
             </div>
-            <div class="col-md-9">
-                <div class="profile-content">
-                  <h1>ID: {{request.session.id}}</h1>
-                  <h1> NAME: {{request.session.firstname}} {{request.session.lastname}} &nbsp&nbsp AGE: {{request.session.age}}</h1>
-                  <br />
-                  <p>INDUSTRY: {{request.session.industry}}  &nbsp&nbsp REGION: {{request.session.region}} </p>
-                  <br />
-                  <p>PROVINCE: {{request.session.province}}  &nbsp&nbsp CITY: {{request.session.city}} </p>
-                   <!-- DASHBOARD APPLICANT FOR POST -->
-                   <div class="container-xl">
-                    <div class="table-responsive">
-                      <div class="table-wrapper">
-                        <div class="table-title">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <h2>Manage <b>Posts</b>(sample)</h2>
-                            </div>
-                            <div class="col-sm-6">		
-                            </div>
-                          </div>
-                        </div>
-                        <table class="table table-striped table-hover">
-                          <thead>
-                            <tr>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>Address</th>
-                              <th>Phone</th>
-                              <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Thomas Hardy</td>
-                              <td>thomashardy@mail.com</td>
-                              <td>89 Chiaroscuro Rd, Portland, USA</td>
-                              <td>(171) 555-2222</td>
-                              <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>        
-                </div>
-                 <!-- END OF DASHBOARD APPLICANT FOR POST -->
-              </div>
-            <div class="col-md-3" id="info">
+            <div class ="pd-right">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit" id="find" value="find" name="find">Find</button>
+                    <button type="submit" id="post" value="post" name="post">Create Post</button>
+                    <button type="submit" id="logout" value="Logout" name="logout">Logout</button>
+                </form>
             </div>
         </div>
+
+        <div class="profile-info">
+            <div class="info-col">
+                <div class ="profile-intro">
+                    <h3>Profile Information</h3>
+                    <p class="intro-text"> Name : {{request.session.firstname}} {{request.session.lastname}}
+                    <p class="intro-text"> Age : {{request.session.age}}</p>
+                    <p class="intro-text"> Industry : {{request.session.industry}}</p>
+                    <p class="intro-text"> Region: {{request.session.region}}</p>
+                    <p class="intro-text"> Province : {{request.session.province}}
+                    <p class="intro-text"> City : {{request.session.city}}</p>
+                    <hr>
+                </div>
+            </div>
+            <div class="post-col">
+                <div class="post-container">
+                    <p class="post-text">--- Posted Stuff Goes Here ---</p>
+                </div>
+            </div>   
+        </div>    
+    </div>
+
+    <div class = "footer">
+        <p>This is a Footer -- Insert Copyright here</p>
     </div>
 
 </body>
-
 </html>
