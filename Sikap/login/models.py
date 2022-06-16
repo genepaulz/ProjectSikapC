@@ -158,9 +158,9 @@ class Employer(models.Model):
         for objects in mat:
             
           if(objects.isAgeViewable):
-                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h3>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><h5>A-ID: <input name='appID' type='hidden' value="+str(objects.applicantID_id)+">"+str(objects.applicantID_id)+"</h5><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br> "
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h3>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><input name='appID' type='hidden' value="+str(objects.applicantID_id)+"><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br> "
         else:
-                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><h5>A-ID: <input name='appID' type='hidden' value="+str(objects.applicantID_id)+">"+str(objects.applicantID_id)+"</h5><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br>"
+                d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><input name='appID' type='hidden' value="+str(objects.applicantID_id)+"><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br>"
         
         context = {
             'result' : d
@@ -179,11 +179,11 @@ class Employer(models.Model):
             applicantID = applicant
         )
         form.save()
-        match = Employer.objects.filter(employerUser_id = employer).update(matches=F('matches')+1)
+        match = employer.matches
         form2 = Employer(
             employerUser_id = employer,
             companyName = company,
-            matches = match
+            matches = match + 1
         )
         form2.save()
         

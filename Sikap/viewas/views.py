@@ -43,8 +43,10 @@ class ViewAsEView(View):
             del request.session['company']
             del request.session['hasSearched']
             del request.session['searchResults']
-            #del request.session['matches']
+            del request.session['matches']
+
             return redirect('landing:landing_view')
+
         elif('search' in request.POST):
             region = request.POST.get("regionPOST")            
             province = request.POST.get("provincePOST")
@@ -55,6 +57,7 @@ class ViewAsEView(View):
             request.session['searchResults'] = Employer.search(region,province,city,industry,filt)
 
             return redirect('viewas:viewase_view')
+            
         elif('match' in request.POST):
             company = request.POST.get("company")
             employer = request.POST.get("employer")
@@ -63,5 +66,5 @@ class ViewAsEView(View):
             Employer.match(employer,post,applicant,company)
             query = Employer.objects.get(employerUser_id = employer)
             request.session['matches'] = query.matches
-            
+
             return redirect('viewas:viewase_view')
