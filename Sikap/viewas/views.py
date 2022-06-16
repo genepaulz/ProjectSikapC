@@ -54,4 +54,5 @@ class ViewAsEView(View):
             filt = request.POST.get("inputPOST")
             request.session['hasSearched'] = 1
             request.session['searchResults'] = Employer.search(region,province,city,industry,filt)
+        
             return redirect('viewas:viewase_view')

@@ -7,7 +7,7 @@ from posts.models import Posts
 
 class Match(models.Model):
     employerID = models.ForeignKey(Employer, on_delete=models.CASCADE, db_column='EmployerID')
-    postID = models.ForeignKey(Posts, on_delete=models.CASCADE, db_column='PostID')
+    postsID = models.ForeignKey(Posts, on_delete=models.CASCADE, db_column='PostID')
     applicantID = models.ForeignKey(Applicant, on_delete=models.CASCADE, db_column='ApplicantID')
 
 

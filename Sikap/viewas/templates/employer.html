@@ -104,8 +104,10 @@
                     <span class="anchor">Filter City</span>
                     <select name="City" id="city" onchange="printFunction()">
                         <option value="Cebu" selected>Cebu City</option>
-                        <option value="Lapu-Lapu">Lapu-Lapu</option>
-                        <option value="Mandaue">Mandaue</option>                  
+                        <option value="Lapu-Lapu">Lapu-Lapu City</option>
+                        <option value="Mandaue">Mandaue City</option>
+                        <option value="Talisay">Talisay City</option>
+                        <option value="Carcar">Carcar City</option>                   
                     </select>
                 </div>
                 <div id="list4" class="dropdown-check-list" tabindex="100">
@@ -119,8 +121,12 @@
                         <!-- <option value=""></option> -->
                         <option value="Education">Education</option>
                         <option value="BPO">BPO</option>
-                        <option value="Technology">Technology</option> 
-                        <option value="Hospitality Management">Hospitality Management</option>                 
+                        <option value="Technology">Technology</option>
+                        <option value="Agriculture">Agriculture</option> 
+                        <option value="Commerce">Commerce</option> 
+                        <option value="Food">Food</option> 
+                        <option value="Hospitality Management">Hospitality Management</option>
+                                         
                     </select>
                 </div>
                 <form method="POST" class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
@@ -143,7 +149,7 @@
                 <center>
                     <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
                 </center>
-                <header> {{profile.companyName}} </header>
+                <header> {{request.session.companyName}} </header>
                 <ul class ="sidebar-nav">
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Search</a></li>
@@ -154,31 +160,16 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
-    <div class="sidebar">
-        <center>
-            <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
-        </center>
-        <header> {{request.session.companyName}} </header>
-        <ul class ="sidebar-nav">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Search</a></li>
-            <form action="" method="post">
-                {% csrf_token %}
-                <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
-            </form>
-        </ul>
-    </div><form method = "POST">
-    <div hidden id="querylist" name="querylist"></div>
-    <div class="col-sm-3" id="table_body">
-        {% if request.session.searchResults != 'nothing'%}   
-        {{request.session.searchResults.result | safe}}   
-        {% endif %}
+        
+        <form method = "POST">    
+        <div hidden id="querylist" name="querylist"></div>
+            <div class="col-sm-3" id="table_body">
+                {% if request.session.searchResults != 'nothing'%}   
+                {{request.session.searchResults.result | safe}}   
+                {% endif %}
+            </div>
+        </form>
     </div>
-    </form>
-    </div>
-
 </div>
 
     
