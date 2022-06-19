@@ -1,6 +1,4 @@
-
 from django.shortcuts import render,redirect
-
 from django.views.generic import View
 from django.http import HttpResponse
 from .models import *
@@ -10,6 +8,7 @@ from django.template import *
 from .import views
 from datetime import *
 from passlib.hash import pbkdf2_sha256
+from django.contrib import messages
 
 
 # Create your views here.
@@ -67,6 +66,6 @@ class ViewAsEView(View):
             Employer.match(employer,post,applicant,company)
             query = Employer.objects.get(employerUser_id = employer)
             request.session['matches'] = query.matches
-
+            messages.success(request,'Match Success!')
             return redirect('viewas:viewase_view')
         
