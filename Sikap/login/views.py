@@ -6,6 +6,7 @@ from .models import *
 from django.template import *
 from .import views
 from datetime import *
+from django.contrib import messages
 
 
 # Create your views here.
@@ -27,6 +28,7 @@ class LoginView(View):
             request.session['company'] = e.companyName
             request.session['hasSearched'] = 0
             request.session['searchResults'] = "nothing"
+            messages.success(request,'Login Successful!')
             return redirect('viewas:viewase_view')
         elif(User.login(email,password) == 0):    
             a = Applicant.objects.get(applicantUser_id = q.id)
@@ -39,6 +41,7 @@ class LoginView(View):
             request.session['province'] = q.province
             request.session['city'] = q.city            
             request.session['age'] = a.age
+            messages.success(request,'Login Successful!')
             return redirect('viewas:viewasa_view')
 
 

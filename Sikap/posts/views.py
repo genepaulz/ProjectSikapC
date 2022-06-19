@@ -6,7 +6,8 @@ from login.models import Applicant
 from django.template import *
 from .import views
 from datetime import *
-from passlib.hash import pbkdf2_sha256
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -35,8 +36,7 @@ class PostsView(View):
         email = request.session.get('email')
         firstname = request.session.get('firstname')
         lastname = request.session.get('lastname')
-        print(email)
-        print(firstname)
-        print(lastname)
+
         Applicant.createpost(email,firstname,lastname,region,province,city,age,industry,yearsOfExperience,position,isAgeViewable)
+        messages.success(request,'Post Succesful!')
         return redirect('viewas:viewasa_view')

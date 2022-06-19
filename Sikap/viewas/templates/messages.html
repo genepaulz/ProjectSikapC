@@ -1,0 +1,5 @@
+{% if messages %}
+    {% for message in messages %}
+    <span class="alert {{ message.tags }} p-10 d-block" id="msg" role="alert" >  {{message}} </span>
+    {% endfor %}
+{% endif %}

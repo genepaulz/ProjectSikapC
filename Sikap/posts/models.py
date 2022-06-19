@@ -22,6 +22,23 @@ class Posts(models.Model):
 
     class Meta:
         db_table = "Posts"
-    
+
+def __str__(self):
+    return self.applicantID
+
+
+def viewPosts(id):      
+        
+        d = ""
+        post = Posts.objects.filter(applicantID=id)
+        for objects in post:
+        
+                d += "<div class='card'><div class='container'><h4>ID: <input name='postID' type='hidden' value="+str(objects.id)+">"+str(objects.id)+"</h3><input name='appID' type='hidden' value="+str(objects.applicantID_id)+"><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div><center><input type='submit' class='btn btn-info btn-lg btn-block p-3' name='match' value='Match'></div><br>"
+        
+        context = {
+            'result' : d
+      
+        }        
+        return context
  
         

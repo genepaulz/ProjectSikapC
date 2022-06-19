@@ -1,8 +1,8 @@
-from django.db import reset_queries
+
 from django.shortcuts import render,redirect
-from django.http import JsonResponse
-from django.views.generic import View,TemplateView
-from django.http import HttpResponse, HttpResponseRedirect
+
+from django.views.generic import View
+from django.http import HttpResponse
 from .models import *
 from posts.models import Posts
 from login.models import Employer
@@ -16,8 +16,9 @@ from passlib.hash import pbkdf2_sha256
 
 class ViewAsAView(View):
     def get(self,request):
-        return render(request,'applicant.html')
-    
+        id = request.session['id']
+        apposts = Posts.objects.filter(applicantID_id = id)
+        return render(request,'applicant.html',{'apposts':apposts})
     def post(self,request):
         if('post' in request.POST):
             return redirect('posts:posts_view')
@@ -44,7 +45,7 @@ class ViewAsEView(View):
             del request.session['hasSearched']
             del request.session['searchResults']
             del request.session['matches']
-
+            del request.session['id']
             return redirect('landing:landing_view')
 
         elif('search' in request.POST):
@@ -68,3 +69,4 @@ class ViewAsEView(View):
             request.session['matches'] = query.matches
 
             return redirect('viewas:viewase_view')
+        
