@@ -1,157 +1,186 @@
-<html>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<style>
-    body {
-    
-    
-    background-color: #FFFFFF;
-    height: 100vh;
-    color: black;
-}
-    nav {
-        color: white;
-    }
+    <style>
+        body{
+            background-image: linear-gradient(to right, #4bb3fd, white);
+        }
 
-aside {
-    width: 30%;
-    padding-left: 15px;
-    margin-left: 15px;
-    float: right;
-    font-style: italic;
-    background-color: lightgray;
-}
-    
-.tat{
-    position: fixed;
-}
+        nav{
+            background-color: white;
+        }
+        carousel slide:hover .image{
+            opacity: 0.3;
+        }
+        .carousel-inner img {
+            margin: auto;
+        }
+        .button_container{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            min-height: 50vh;
+        }
+        .Register{
+            width: 300px;
+            height: 100px;
+            border: none;
+            color: white;
+            background-color:#4bb3fd;
+            border-radius: 4px;
+            box-shadow: inset 0 0 0 0 rgb(18, 158, 240);
+            transition: ease-out 0.3s;
+            font-size: 150%;
+            outline: none;
+            margin:auto;
+        }
+        .Register:hover{
+            box-shadow: inset 300px 0 0 0 rgb(18, 158, 240);
+            cursor: pointer;
+        }
+        aside {
+            width: 50%;
+            padding-left: 15px;
+            margin-left: 15px;
+            float: left;
+            font-style: italic;
+            background-color: lightgray;
+        }
 
-.fill{
-    height: 10%;
-}
-
-.navbar{    
-    width: 100%;
-    position:fixed;
-    background: whitesmoke;
-
-}
-
-.nav-right {
-    float: right;
-}
-
-.button_container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-}
-
-.Register{
-    width: 300px;
-    height: 100px;
-    border: none;
-    color: white;
-    background-color:#4bb3fd;
-    border-radius: 4px;
-    box-shadow: inset 0 0 0 0 rgb(18, 158, 240);
-    transition: ease-out 0.3s;
-    font-size: 2rem;
-    outline: none;
-}
-
-.Register:hover{
-    box-shadow: inset 300px 0 0 0 rgb(18, 158, 240);
-    cursor: pointer;
-}
-
-</style>
-
+    </style>
+</head>
 <body>
-    <nav class="navbar sticky-top navbar-light bg-dark">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Sikap</a>
-          </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li class="text-secondary"><a href="#">Find Employers</a></li>
-                <li class="text-secondary"><a href="#">Profile</a></li>
-                <li><a href="#" class="text-secondary">Explore</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Sikap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Find Employers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Explore</a>
+                </li>
             </ul>
-            <div class="nav-right">
-                <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">                        
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit">Search</button>
-                </form>   
-            </div>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
-
-    
-    <div class="fill"></div>
-    <div class="container">
-        <div style="background: #4bb3fd"class="jumbotron text-center color-primary">
-            <h1>picture ni dinhi</h1>
-            <p>YEEEET</p> 
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-flex w-50" style="width:300px;height:50%; overflow: hidden" src="4-1.jpg" alt="First slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-flex w-50" src="4-2.webp" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-flex w-50" src="4-3.jpg" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-        <div class = "button_container">
-            <form action="" method="post">
-                {% csrf_token %}
+
+      <div class = "button_container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div>
                 <button class ="Register" type="submit" name="login">LOGIN</button>
                 <button class ="Register" type="submit" name="rega">REGISTER APPLICANT</button>
                 <button class ="Register" type="submit" name="rege">REGISTER EMPLOYER</button>
-                <!-- <button class ="Register" type="submit" name="encrypt">encrypt</button> -->
-            </form>
-        </div>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia pulvinar dolor vitae tempor. 
-        Etiam ac lorem non felis iaculis pellentesque sed a metus. Quisque sit amet nulla magna. Curabitur 
-        a tellus vitae metus sodales ultrices. Curabitur volutpat magna vitae risus iaculis, eget malesuada 
-        ex hendrerit. Vivamus tincidunt enim ut facilisis facilisis. Nam dignissim mattis viverra.
-
-        Vestibulum vehicula felis et lorem tempor, ut eleifend leo vehicula. Mauris eu felis neque. Ut egestas, 
-        ipsum ac pretium tincidunt, enim nisi volutpat orci, sed lobortis elit lectus a lorem. Phasellus at ipsum 
-        eget purus efficitur iaculis eu id massa. Interdum et malesuada fames ac ante ipsum primis in 
-        faucibus. Sed eget egestas nunc. Vestibulum ornare urna sed rhoncus maximus. Suspendisse iaculis rutrum
-        hendrerit. Duis suscipit mattis laoreet. Cras sit amet interdum neque. Quisque consectetur nulla quis 
-        augue ornare, vitae scelerisque nulla ultrices. Morbi sodales posuere justo, quis porttitor nisl varius 
-        eget. Aenean ultricies pellentesque purus a mattis. Sed ut risus lacus. Vivamus lobortis tristique 
-        elementum. Quisque sodales lorem justo, et luctus orci finibus sit amet.
-        <br>
-        Vestibulum vehicula felis et lorem tempor, ut eleifend leo vehicula. Mauris eu felis neque. Ut egestas, 
-        ipsum ac pretium tincidunt, enim nisi volutpat orci, sed lobortis elit lectus a lorem. Phasellus at ipsum 
-        eget purus efficitur iaculis eu id massa. Interdum et malesuada fames ac ante ipsum primis in 
-        faucibus. Sed eget egestas nunc. Vestibulum ornare urna sed rhoncus maximus. Suspendisse iaculis rutrum
-        hendrerit. Duis suscipit mattis laoreet. Cras sit amet interdum neque. Quisque consectetur nulla quis 
-        augue ornare, vitae scelerisque nulla ultrices. Morbi sodales posuere justo, quis porttitor nisl varius 
-        eget. Aenean ultricies pellentesque purus a mattis. Sed ut risus lacus. Vivamus lobortis tristique 
-        elementum. Quisque sodales lorem justo, et luctus orci finibus sit amet.
-        <br>
-        <aside style="background: #04487c; color:white";>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia pulvinar dolor vitae 
-            tempor. Etiam ac lorem non felis iaculis pellentesque sed a metus. Quisque sit amet nulla magna. 
-            Curabitur a tellus vitae metus sodales ultrices. Curabitur volutpat magna vitae risus iaculis, 
-            eget malesuada ex hendrerit. Vivamus tincidunt enim ut facilisis facilisis. Nam dignissim mattis 
-            viverra.
-        </aside>
-        Vestibulum interdum metus eros, fermentum convallis dolor dignissim id. Cras porttitor diam ac interdum 
-        pretium. Donec tincidunt vestibulum mi. Vivamus faucibus neque quis risus maximus, vitae commodo felis 
-        congue. Nulla bibendum mauris sit amet eros pretium laoreet. Integer non nisi nulla. Nam ullamcorper ex 
-        vitae ultricies ullamcorper. Donec quis dolor eleifend, tempus nisi nec, viverra ante. Nam gravida 
-        luctus nunc ac rutrum. Nunc in consectetur massa. Quisque ornare blandit diam id efficitur.
-        <br>
-        Vivamus eros leo, lobortis vel interdum non, imperdiet ut justo. Nulla at congue nibh. Ut dictum 
-        luctus orci at maximus. Suspendisse elementum egestas metus. Phasellus non tellus a urna venenatis 
-        sagittis. Phasellus eget lorem ornare, cursus ipsum sed, facilisis eros. Mauris ut vehicula est. 
-        Proin dignissim diam in ipsum consectetur vehicula. Mauris vel faucibus neque. Lorem ipsum dolor 
-        sit amet, consectetur adipiscing elit. Vivamus maximus massa nec feugiat pretium.
-      </div>
+            </div>
+            <!-- <button class ="Register" type="submit" name="encrypt">encrypt</button> -->
+        </form>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia pulvinar dolor vitae tempor. 
+            Etiam ac lorem non felis iaculis pellentesque sed a metus. Quisque sit amet nulla magna. Curabitur 
+            a tellus vitae metus sodales ultrices. Curabitur volutpat magna vitae risus iaculis, eget malesuada 
+            ex hendrerit. Vivamus tincidunt enim ut facilisis facilisis. Nam dignissim mattis viverra.
+
+            Vestibulum vehicula felis et lorem tempor, ut eleifend leo vehicula. Mauris eu felis neque. Ut egestas, 
+            ipsum ac pretium tincidunt, enim nisi volutpat orci, sed lobortis elit lectus a lorem. Phasellus at ipsum 
+            eget purus efficitur iaculis eu id massa. Interdum et malesuada fames ac ante ipsum primis in 
+            faucibus. Sed eget egestas nunc. Vestibulum ornare urna sed rhoncus maximus. Suspendisse iaculis rutrum
+            hendrerit. Duis suscipit mattis laoreet. Cras sit amet interdum neque. Quisque consectetur nulla quis 
+            augue ornare, vitae scelerisque nulla ultrices. Morbi sodales posuere justo, quis porttitor nisl varius 
+            eget. Aenean ultricies pellentesque purus a mattis. Sed ut risus lacus. Vivamus lobortis tristique 
+            elementum. Quisque sodales lorem justo, et luctus orci finibus sit amet.
+            <br>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    Vestibulum vehicula felis et lorem tempor, ut eleifend leo vehicula. Mauris eu felis neque. Ut egestas, 
+                    ipsum ac pretium tincidunt, enim nisi volutpat orci, sed lobortis elit lectus a lorem. Phasellus at ipsum 
+                    eget purus efficitur iaculis eu id massa. Interdum et malesuada fames ac ante ipsum primis in 
+                    faucibus. Sed eget egestas nunc. Vestibulum ornare urna sed rhoncus maximus. Suspendisse iaculis rutrum
+                    hendrerit. Duis suscipit mattis laoreet. Cras sit amet interdum neque. Quisque consectetur nulla quis 
+                    augue ornare, vitae scelerisque nulla ultrices. Morbi sodales posuere justo, quis porttitor nisl varius 
+                    eget. Aenean ultricies pellentesque purus a mattis. Sed ut risus lacus. Vivamus lobortis tristique 
+                    elementum. Quisque sodales lorem justo, et luctus orci finibus sit amet.
+                    <br>
+                </div>
+                <div class="col-sm-4" style="background: #04487c; color:white";>                    
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia pulvinar dolor vitae 
+                    tempor. Etiam ac lorem non felis iaculis pellentesque sed a metus. Quisque sit amet nulla magna. 
+                    Curabitur a tellus vitae metus sodales ultrices. Curabitur volutpat magna vitae risus iaculis, 
+                    eget malesuada ex hendrerit. Vivamus tincidunt enim ut facilisis facilisis. Nam dignissim mattis 
+                    viverra.            
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    Vestibulum interdum metus eros, fermentum convallis dolor dignissim id. Cras porttitor diam ac interdum 
+                    pretium. Donec tincidunt vestibulum mi. Vivamus faucibus neque quis risus maximus, vitae commodo felis 
+                    congue. Nulla bibendum mauris sit amet eros pretium laoreet. Integer non nisi nulla. Nam ullamcorper ex 
+                    vitae ultricies ullamcorper. Donec quis dolor eleifend, tempus nisi nec, viverra ante. Nam gravida 
+                    luctus nunc ac rutrum. Nunc in consectetur massa. Quisque ornare blandit diam id efficitur.
+                    <br>
+                    Vivamus eros leo, lobortis vel interdum non, imperdiet ut justo. Nulla at congue nibh. Ut dictum 
+                    luctus orci at maximus. Suspendisse elementum egestas metus. Phasellus non tellus a urna venenatis 
+                    sagittis. Phasellus eget lorem ornare, cursus ipsum sed, facilisis eros. Mauris ut vehicula est. 
+                    Proin dignissim diam in ipsum consectetur vehicula. Mauris vel faucibus neque. Lorem ipsum dolor 
+                    sit amet, consectetur adipiscing elit. Vivamus maximus massa nec feugiat pretium.
+                </div>
+            </div>
+    </div>
+
 </body>
 </html>
