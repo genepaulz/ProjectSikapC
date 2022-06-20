@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+    <head>
+        <title>Employeer Page</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'style1.css'%}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            body{
+                background-color: lightblue;
+            }
+            .navbar{
+            width: 100%;
+            position: fixed;
+            background: whitesmoke;
+            opacity: 1;
+            }
+            .nav-right {
+            float: right;
+            }
+            #list1{
+            float:left;
+            }
+            #list2{
+            float:left;
+            padding-left: 5px;
+            }
+            #list3{
+            float:left;
+            padding-left: 5px;
+            }
+            #list4{
+            float:left;
+            padding-left: 5px;
+            }
+            #search{
+            float:left;
+            padding-left: 5px;
+            }
+            .profile-container{
+                padding: 20px 15%;
+                color: #626262;
+            }
+            .cover-img{
+                width:100%;
+                height: 50%;
+                border-radius: 6px;
+                margin-bottom: 14px;
+            }
+            .pd-img{
+                width: 100px;
+                margin-right: 20px;
+                border-radius: 6px;
+            }
+            .profile-details{
+                background: #fff;
+                padding: 20px;
+                border-radius: 4px;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            .pd-row{
+                display: flex;
+                align-items: flex-start;
+            }
+            .pd-row div h3{
+                font-size: 25px;
+                font-weight: 600;
+            }
+            .pd-row div p{
+                font-size: 13px;
+            }
+            .pd-right button{
+                background: #1876f2;
+                border: 0;
+                outline: 0;
+                padding: 6px 10px;
+                display: inline-flex;
+                align-items: center;
+                color: #fff;
+                border-radius: 3px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+            .pd-right button:first-child{
+                background: #e4e6eb;
+                color: #000;
+            }
+            .profile-info{
+                display:flex;
+                align-self: flex-start;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            .info-col{
+                flex-basis: 33%;
+            }
+            .post-col{
+                flex-basis: 65%;
+                margin-left: 50px;
+            }
+            .profile-intro{
+                background: #fff;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 4px;
+            }
+            .profile-intro h3{
+                font-weight: 600;
+            }
+            .intro-text{
+                text-align: center;
+                margin: 10px 0;
+                font-size: 15px;
+            }
+            .profile-intro hr{
+                border: 0;
+                height: 1px;
+                background: #ccc;
+                margin: 24px 0;
+            }
+            .title-box{
+                display: flex; 
+                align-items: center;
+                justify-content: space-between;
+            }
+            .match-box{
+                margin-top: 15px;
+            }
+            .footer{
+                text-align: center;
+                color: #9a9a9a;
+                padding: 10px 0 20px;
+                font-size: 13px;
+            }
+            /*---For the Info Cards---*/
+            .card {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px; /* 5px rounded corners */
+            margin-left: 50px;
+            }
+            /* On mouse-over, add a deeper shadow */
+            .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+            /* Add some padding inside the card container */
+            .container {
+            margin-left: 50px;
+            padding: 2px 16px;
+            }
+            #table_body{
+                background: #fff;
+            }
+            #results{
+                margin-top:1%;
+            }
+        </style>
+    </head>
+<body>
+    <nav class="navbar sticky-top navbar-light bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Sikap</a>
+            </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="text-secondary"><a href="#">Find Employers</a></li>
+                    <li class="text-secondary"><a href="#">Profile</a></li>
+                    <li><a href="#" class="text-secondary">Explore</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div id="list1" class="dropdown-check-list" tabindex="100">
+                        <span class="anchor">Filter by Region: </span>
+                        <select name="Region" id="region" onchange="printFunction()">
+                            <option disabled selected>Region</option>
+                            <option value="NCR">NCR </option>
+                            <option value="CAR">CAR </option>
+                            <option value="I">Region I </option>
+                            <option value="II">Region II </option>
+                            <option value="III">Region III </option>
+                            <option value="IV-A">Region IV-A </option>
+                            <option value="MIMAROPA">MIMAROPA </option>
+                            <option value="V">Region V </option>
+                            <option value="VI">Region VI </option>
+                            <option value="VII">Region VII </option>
+                            <option value="VIII">Region VIII </option>
+                            <option value="IX">Region IX </option> 
+                            <option value="X">Region X </option> 
+                            <option value="XI">Region XI </option> 
+                            <option value="XII">Region XII </option> 
+                            <option value="XIII">Region XIII </option> 
+                            <option value="BARMM">BARMM </option> 
+                        </select>
+                    </div>
+                    <div id="list2" class="dropdown-check-list" tabindex="100">
+                        <span class="anchor">Filter by Province: </span>
+                        <select name="Province" id="province" onchange="printFunction()">
+                            <option disabled selected>Province</option>
+                            <option value="Cebu">Cebu</option>
+                            <option value="Bohol">Bohol</option>
+                            <option value="Negros Oriental">Negros Oriental</option>
+                            <option value="Negraos OCcidental">Negros Occidental</option>
+                            <option value="Siquijor">Siquijor</option>
+                            <option value="Leyte">Leyte</option>
+                            <option value="Samar">Samar</option>
+                            <option value="Aklan">Aklan</option>
+                            <option value="Surigao Del Sur">Surigao Del Sur</option>
+                            <option value="Benguet">Benguet</option>
+                            <option value="Davao del Sur">Davao del Sur</option>                      
+                        </select>
+                    </div>
+                    <div id="list3" class="dropdown-check-list" tabindex="100">
+                        <span class="anchor">Filter by City: </span>
+                        <select name="City" id="city" onchange="printFunction()">
+                            <option disabled selected>City</option>
+                            <option value="Cebu">Cebu City</option>
+                            <option value="Lapu-Lapu">Lapu-Lapu</option>
+                            <option value="Mandaue">Mandaue</option>                  
+                        </select>
+                    </div>
+                    <div id="list4" class="dropdown-check-list" tabindex="100">
+                        <span class="anchor">Filter by Industry: </span>
+                        <select name="Industry" id="industry" onchange="printFunction()">
+                            <option disabled selected>Industry</option>
+                            <option value="Education">Education</option>
+                            <option value="BPO">BPO</option>
+                            <option value="Technology">Technology</option> 
+                            <option value="Hospitality Management">Hospitality Management</option>                 
+                        </select>
+                    </div>
+                    <form method="POST" class="form-inline my-2 my-lg-0 al" style="padding-top: 30px;">
+                        {% csrf_token %}                    
+                        <input type="hidden" name="regionPOST" value="" id="regionPOST">
+                        <input type="hidden" name="provincePOST" value="" id="provincePOST">
+                        <input type="hidden" name="cityPOST" value="" id="cityPOST">
+                        <input type="hidden" name="industryPOST" value="" id="industryPOST">
+                        <input type="hidden" name="inputPOST" value="" id="inputPOST">
+                        <input class="form-control mr-sm-2" type="hidden" placeholder="Search" onkeyup="printFunction()" onmousemove="printFunction()"  aria-label="Search" id="materialInput" name="materialInput" readonly>                    
+                     <button class="btn btn-outline-success btn-lg btn-block" onmousemove="printFunction()"  style="background: #0496ff;" type="submit" name="search"  id="search" onclick="return confirm('Please verify search filters')">Search</button>
+                    </form>
+                </div> 
+        </div>
+    </nav> 
+    {% include 'messages.html' %}
+    <div class = "profile-container">
+        <img src="{% static 'cover.jpg'%}" class ="cover-img"> 
+        <div class ="profile-details">
+            <div class ="pd-left">
+                <div class="pd-row">
+                    <img src="{% static 'company.jpg'%}" class="pd-img">
+                    <div>
+                        <h3>{{request.session.company}}</h3>
+                    </div>
+                </div>
+            </div>
+            {% include 'messages.html' %}
+            <div class ="pd-right">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit" id="submit" value="Logout" name="logout" onclick="return confirm('Are you sure you want to logout?')">Logout</button>
+                </form>
+            </div>
+        </div>
+        <div class ="profile-info">
+            <div class="info-col">
+                <div class ="profile-intro">
+                    <h3>Introduction</h3>
+                    <p class="intro-text">---Insert Company Motto, Vision & Mission or General Info Here---</p>
+                    <hr>
+                </div>
+                <div class ="profile-intro">
+                    <div class="title-box">
+                        <h3>Matches: {{request.session.matches}}</h3>
+                    </div>
+                    <div class ="match-box">
+                        <p></p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="post-col">
+                    <form method="POST">
+                        {% csrf_token %} 
+                        <div hidden id="querylist" name="querylist"></div>
+                        <input type="hidden" name='company' value="{{request.session.company}}">
+                        <input type="hidden" name='employer' value="{{request.session.id}}">
+                            <div class="col-sm-3" id="table_body">
+                                {% if request.session.searchResults != 'nothing'%}
+                                {{request.session.searchResults.result | safe}}        
+                                {% endif %}
+                            </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class = "footer">
+        <p>This is a Footer -- Insert Copyright here</p>
+    </div>
+
+
+
+</body>
+    <form>
+    <script>
+         setTimeout(function(){
+                    if($('#msg').length > 0){
+                        $('#msg').remove();
+                    }
+            }, 1500)
+        function clicked(e){
+            if(!confirm('Please Confirm MATCH')) {
+                e.preventDefault();
+            }
+        }
+        document.getElementById("querylist").innerHTML = "Paragraph changed!"; 
+        function printFunction(){
+            var region_list = document.getElementById("region");
+            var region_filter = region_list.options[region_list.selectedIndex].value;
+            var province_list = document.getElementById("province");
+            var province_filter = province_list.options[province_list.selectedIndex].value;
+            var city_list = document.getElementById("city");
+            var city_filter = city_list.options[city_list.selectedIndex].value;
+            var industry_list = document.getElementById("industry");
+            var industry_filter = industry_list.options[industry_list.selectedIndex].value;
+            var input_filter = document.getElementById("materialInput").value
+            const q = {region: region_filter,
+                        province: province_filter,
+                        city: city_filter,
+                        industry: industry_filter};
+            
+            
+            var query = JSON.stringify(q);
+            document.getElementById("querylist").innerHTML = query
+            document.getElementById("regionPOST").value = region_filter;
+            document.getElementById("provincePOST").value = province_filter;
+            document.getElementById("cityPOST").value = city_filter;
+            document.getElementById("industryPOST").value = industry_filter;
+            document.getElementById("inputPOST").value = input_filter;
+        }
+    </script>
+    </form>
+</html>

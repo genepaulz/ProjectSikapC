@@ -1,8 +1,6 @@
-from django.db import reset_queries
 from django.shortcuts import render,redirect
-from django.http import JsonResponse
-from django.views.generic import View,TemplateView
-from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import View
+from django.http import HttpResponse
 from .models import *
 from posts.models import Posts
 from login.models import Employer
@@ -10,14 +8,16 @@ from django.template import *
 from .import views
 from datetime import *
 from passlib.hash import pbkdf2_sha256
+from django.contrib import messages
 
 
 # Create your views here.
 
 class ViewAsAView(View):
     def get(self,request):
-        return render(request,'applicant.html')
-    
+        id = request.session['id']
+        apposts = Posts.objects.filter(applicantID_id = id)
+        return render(request,'applicant.html',{'apposts':apposts})
     def post(self,request):
         if('post' in request.POST):
             return redirect('posts:posts_view')
@@ -35,17 +35,18 @@ class ViewAsAView(View):
 
 class ViewAsEView(View):
     def get(self,request):        
-        return render(request,'viewase.html')
+        return render(request,'employer.html')
         
-            
-    
     def post(self,request):
         if('logout' in request.POST):
             del request.session['email']
-            del request.session['companyName']
+            del request.session['company']
             del request.session['hasSearched']
             del request.session['searchResults']
+            del request.session['matches']
+            del request.session['id']
             return redirect('landing:landing_view')
+
         elif('search' in request.POST):
             region = request.POST.get("regionPOST")            
             province = request.POST.get("provincePOST")
@@ -54,55 +55,17 @@ class ViewAsEView(View):
             filt = request.POST.get("inputPOST")
             request.session['hasSearched'] = 1
             request.session['searchResults'] = Employer.search(region,province,city,industry,filt)
-            return redirect('viewas:viewase_view')
-            # return render(request,'viewase.html')
-            # return HttpResponse(request.session['searchResults'])
 
-def LiveSearch(request):
-    template_name = "index.html"
-    filt = request.GET.getlist("d")[0]
-    d=""
-    mat = Posts.objects.filter(industry__icontains=filt)
-    print(filt)
-    image = "/static/img_avatar.png"
-    for objects in mat:
-        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
-        if(objects.isAgeViewable):
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
-        else:
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
+            return redirect('viewas:viewase_view')
+            
+        elif('match' in request.POST):
+            company = request.POST.get("company")
+            employer = request.POST.get("employer")
+            post = request.POST.get("postID")
+            applicant = request.POST.get("appID")
+            Employer.match(employer,post,applicant,company)
+            query = Employer.objects.get(employerUser_id = employer)
+            request.session['matches'] = query.matches
+            messages.success(request,'Match Success!')
+            return redirect('viewas:viewase_view')
         
-    print(d)
-    mat = Posts.objects.filter(region__icontains=filt)
-    for objects in mat:
-        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
-        if(objects.isAgeViewable):
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
-        else:
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
-    print(d)
-    mat = Posts.objects.filter(province__icontains=filt)
-    for objects in mat:
-        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
-        if(objects.isAgeViewable):
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
-        else:
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
-    print(d)
-    mat = Posts.objects.filter(city__icontains=filt)
-    for objects in mat:
-        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
-        if(objects.isAgeViewable):
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
-        else:
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
-    print(d)
-    mat = Posts.objects.filter(position__icontains=filt)
-    for objects in mat:
-        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
-        if(objects.isAgeViewable):
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p><p>Age: "+str(objects.age)+"</p></div></div><br>"
-        else:
-            d += "<div class='card'><img src="+image+" alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+", "+objects.firstname+"</b></h4><p>Position: "+objects.position+"</p><p>Years of Experience: "+str(objects.yearsOfExperience)+"</p><p>Industry: "+objects.industry+"</p><p>Region: "+objects.region+"</p><p>Province: "+objects.province+"</p><p>City: "+objects.city+"</p></div></div><br>"
-    print(d)
-    return JsonResponse({"d": d})
